@@ -1,0 +1,8 @@
+{
+    "1": {
+        "username": "new",
+        "email": "new@gmail.com",
+        "password_hash": "pbkdf2:sha256:600000$xp4LOGOP9SBoRpza$57420d35eb687de7668e776805a8f200ef3fd074ce350d05896e728b593f61fb",
+        "chat_history": []
+    }
+}

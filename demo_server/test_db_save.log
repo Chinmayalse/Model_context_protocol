@@ -1,0 +1,56 @@
+2025-06-01 16:43:56,100 - __main__ - INFO - Logging system initialized
+2025-06-01 16:43:56,101 - __main__ - INFO - === Starting database save tests ===
+2025-06-01 16:43:56,101 - __main__ - INFO - 
+--- Testing database connection ---
+2025-06-01 16:43:56,102 - __main__ - INFO - Testing database connection...
+2025-06-01 16:43:56,169 - __main__ - INFO - Database version: PostgreSQL 17.2 on x86_64-windows, compiled by msvc-19.41.34123, 64-bit
+2025-06-01 16:43:56,178 - __main__ - INFO - Current number of results in database: 156
+2025-06-01 16:43:56,190 - __main__ - INFO - Successfully inserted test record with ID: 164
+2025-06-01 16:43:56,193 - __main__ - INFO - Cleaned up test record
+2025-06-01 16:43:56,193 - __main__ - INFO - 
+--- Testing basic save ---
+2025-06-01 16:43:56,194 - __main__ - INFO - Starting test_save_result
+2025-06-01 16:43:56,194 - tasks - INFO - [DB_SAVE] ==================================================
+2025-06-01 16:43:56,195 - tasks - INFO - [DB_SAVE] Starting database save for test_file_test_tool_20250601_164356.json
+2025-06-01 16:43:56,195 - tasks - INFO - [DB_SAVE] User ID: 1, Batch ID: test_batch_123
+2025-06-01 16:43:56,195 - tasks - INFO - [DB_SAVE] Processing type: process, Tool: test_tool
+2025-06-01 16:43:56,195 - tasks - INFO - [DB_SAVE] Result data structure: {'content': '<str>', 'metadata': '<dict>', 'batch_id': '<str>'}
+2025-06-01 16:43:56,251 - tasks - INFO - [DB_SAVE] Successfully connected to database. Connection: user=postgres password=xxx dbname=mcp_database host=localhost port=5432
+2025-06-01 16:43:56,251 - tasks - INFO - [DB_SAVE] Calling ResultManager.save_result()...
+2025-06-01 16:43:56,251 - db_results - DEBUG - [DB_SAVE] Attempting to save result to database. Params: (1, 'test_file_test_tool_20250601_164356.json', 'test_file', 'process', 'test_tool')...
+2025-06-01 16:43:56,251 - db_results - DEBUG - [DB_SAVE] Creating new database connection
+2025-06-01 16:43:56,416 - db_results - DEBUG - [DB_SAVE] Executing query
+2025-06-01 16:43:56,426 - db_results - DEBUG - [DB_SAVE] Query executed successfully. Result: [165]
+2025-06-01 16:43:56,426 - db_results - INFO - [DB_SAVE] Successfully saved result to database with ID: 165
+2025-06-01 16:43:56,435 - tasks - INFO - [DB_SAVE] Successfully saved to database. Result ID: 165
+2025-06-01 16:43:56,436 - tasks - INFO - [DB_SAVE] Database save succeeded
+2025-06-01 16:43:56,438 - tasks - INFO - [FILE_SAVE] Successfully saved result to file: C:\Users\chinmay alse\Desktop\MCP_1\demo_server\chat_results\test_file_test_tool_20250601_164356.json
+2025-06-01 16:43:56,439 - __main__ - INFO - Save result: {'filename': 'test_file_test_tool_20250601_164356.json', 'db_success': True, 'fs_success': True, 'batch_id': 'test_batch_123'}
+2025-06-01 16:43:56,440 - __main__ - INFO - Result was saved to database successfully
+2025-06-01 16:43:56,524 - __main__ - INFO - Found result in database with ID: 165
+2025-06-01 16:43:56,524 - __main__ - INFO - Result data: {'status': 'completed', 'content': 'This is a test result', 'batch_id': 'test_batch_123', 'metadata': {'test': True, 'timestamp': '2025-06-01T11:13:56.194695'}}
+2025-06-01 16:43:56,524 - __main__ - INFO - Basic save test PASSED
+2025-06-01 16:43:56,524 - __main__ - INFO - 
+--- Testing batch save ---
+2025-06-01 16:43:56,524 - __main__ - INFO - Starting test_batch_save
+2025-06-01 16:43:56,703 - db_batch_helper - INFO - Created batch job with ID: 10 and batch_id: 7eddc5ab-c886-45e4-9b5a-5d72634bb0fd
+2025-06-01 16:43:56,703 - __main__ - INFO - Created test batch with ID: 7eddc5ab-c886-45e4-9b5a-5d72634bb0fd
+2025-06-01 16:43:56,704 - tasks - INFO - [DB_SAVE] ==================================================
+2025-06-01 16:43:56,705 - tasks - INFO - [DB_SAVE] Starting database save for test_batch_file_test_tool_20250601_164356.json
+2025-06-01 16:43:56,705 - tasks - INFO - [DB_SAVE] User ID: 1, Batch ID: 7eddc5ab-c886-45e4-9b5a-5d72634bb0fd
+2025-06-01 16:43:56,705 - tasks - INFO - [DB_SAVE] Processing type: process, Tool: test_tool
+2025-06-01 16:43:56,705 - tasks - INFO - [DB_SAVE] Result data structure: {'content': '<str>', 'metadata': '<dict>', 'batch_id': '<str>'}
+2025-06-01 16:43:56,765 - tasks - INFO - [DB_SAVE] Successfully connected to database. Connection: user=postgres password=xxx dbname=mcp_database host=localhost port=5432
+2025-06-01 16:43:56,766 - tasks - INFO - [DB_SAVE] Calling ResultManager.save_result()...
+2025-06-01 16:43:56,766 - db_results - DEBUG - [DB_SAVE] Attempting to save result to database. Params: (1, 'test_batch_file_test_tool_20250601_164356.json', 'test_batch_file', 'process', 'test_tool')...
+2025-06-01 16:43:56,766 - db_results - DEBUG - [DB_SAVE] Creating new database connection
+2025-06-01 16:43:56,924 - db_results - DEBUG - [DB_SAVE] Executing query
+2025-06-01 16:43:56,936 - db_results - DEBUG - [DB_SAVE] Query executed successfully. Result: [166]
+2025-06-01 16:43:56,936 - db_results - INFO - [DB_SAVE] Successfully saved result to database with ID: 166
+2025-06-01 16:43:56,938 - tasks - INFO - [DB_SAVE] Successfully saved to database. Result ID: 166
+2025-06-01 16:43:56,938 - tasks - INFO - [DB_SAVE] Database save succeeded
+2025-06-01 16:43:56,940 - tasks - INFO - [FILE_SAVE] Successfully saved result to file: C:\Users\chinmay alse\Desktop\MCP_1\demo_server\chat_results\test_batch_file_test_tool_20250601_164356.json
+2025-06-01 16:43:56,940 - __main__ - INFO - Save result: {'filename': 'test_batch_file_test_tool_20250601_164356.json', 'db_success': True, 'fs_success': True, 'batch_id': '7eddc5ab-c886-45e4-9b5a-5d72634bb0fd'}
+2025-06-01 16:43:57,107 - __main__ - INFO - Batch status: {'id': 10, 'status': 'processing', 'total_files': 1, 'processed': 0, 'failed': 0, 'processed_files': 0, 'success_count': 0, 'failed_count': 0, 'created_at': datetime.datetime(2025, 6, 1, 16, 43, 56, 684449), 'completed_at': None}
+2025-06-01 16:43:57,107 - __main__ - INFO - Batch save test PASSED
+2025-06-01 16:43:57,108 - __main__ - INFO - === Test completed ===

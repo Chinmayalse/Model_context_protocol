@@ -1,0 +1,89 @@
+{
+    "confidence": 0.5,
+    "enhanced_text": {
+        "Patient Name": "NA",
+        "hospital_lab_location": "NA",
+        "hospital_lab_name": "NA",
+        "parameters": [
+            {
+                "parameter": "Hemoglobin",
+                "sub_parameter": "NA",
+                "units": "g/dl",
+                "value": 14.2
+            },
+            {
+                "parameter": "Total WBC/leukocyte count",
+                "sub_parameter": "NA",
+                "units": "x10^3/ul",
+                "value": 8.18
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Neutrophils",
+                "units": "%",
+                "value": 43.62
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Lymphocyte",
+                "units": "%",
+                "value": 48.8
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Monocyte",
+                "units": "%",
+                "value": 6.6
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Eosinophil",
+                "units": "%",
+                "value": 0.91
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Basophil",
+                "units": "%",
+                "value": 0.07
+            },
+            {
+                "parameter": "Total RBC count",
+                "sub_parameter": "NA",
+                "units": "millions/cmm",
+                "value": 5.17
+            },
+            {
+                "parameter": "Hematocrit/PCV",
+                "sub_parameter": "NA",
+                "units": "%",
+                "value": 41.8
+            },
+            {
+                "parameter": "Platelet count",
+                "sub_parameter": "NA",
+                "units": "x10^3/ul",
+                "value": 248
+            }
+        ],
+        "reported_date": "NA",
+        "test": "Complete Blood Count (CBC)"
+    },
+    "extracted_text": "ee\nHaematology Report\nnc REE Ee ee wet ey te Ce . .\n( Peremeter heme omen\nHemeghatin (0) Coma 42 ore HIT 18 pve FILS Ot ve\net 10 ge\ntert (Ore vows ® 15 gry\nCSA( merges) Leman Hae 018 FO emvia ty\n‘Voted WOE ComagTe) Reem kas Oem\nChagrwn $008 14 Ore\nbetare Ore tear)\n6D ROOT\nDerrarentaad WOE Cone {80}\nevra, ae Od Hew aa Oy\nLemorecyert, ae had 4362 & ane IO ® =e\nnwreran, os thes CFO) % ane ADE\nLowa as as OF 01% ana C1 Oe\nQeegrmn as saa 001%\ntow fawesre Maen 3-rose\n‘Tetet REC Comet ST adel MASELE ES Be\nCTY 24s MOR ITE\n—_ Ae moe\n< cry a —\nwo Rive 2 hee\nLoad m8 newe\n. 10a Woe\n‘Totes PRetatete Comm (°C) RAR 008 ram 450,000 4 908 eee R\n-\" een 70 se9K\nCal aine 020 Osan\nunary Sem) od Prod _\nCesare tees i7) a D11h a\n\n\n",
+    "extraction_method": "gemini_2.0_flash",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\batch\\Haematology - CBC 24-8-22.pdf",
+    "file_processed": "Haematology - CBC 24-8-22.pdf",
+    "keywords_identified": [
+        "Haemoglobin",
+        "WBC",
+        "Platelets",
+        "RBC",
+        "MCV"
+    ],
+    "processing_time": "52.78 seconds",
+    "reason": "",
+    "report_type": "CBC",
+    "success": true,
+    "timestamp": "2025-06-02 09:54:51",
+    "verified_text": "{\n  \"test\": \"Complete Blood Count (CBC)\",\n  \"hospital_lab_name\": \"NA\",\n  \"hospital_lab_location\": \"NA\",\n  \"reported_date\": \"NA\",\n  \"Patient Name\": \"NA\",\n  \"parameters\": [\n    {\n      \"parameter\": \"Hemoglobin\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 14.2,\n      \"units\": \"g/dl\"\n    },\n    {\n      \"parameter\": \"Total WBC/leukocyte count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 8.18,\n      \"units\": \"x10^3/ul\"\n    },\n    {\n      \"parameter\": \"WBC/Leukocyte differential count\",\n      \"sub_parameter\": \"Neutrophils\",\n      \"value\": 43.62,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC/Leukocyte differential count\",\n      \"sub_parameter\": \"Lymphocyte\",\n      \"value\": 48.8,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC/Leukocyte differential count\",\n      \"sub_parameter\": \"Monocyte\",\n      \"value\": 6.6,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC/Leukocyte differential count\",\n      \"sub_parameter\": \"Eosinophil\",\n      \"value\": 0.91,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC/Leukocyte differential count\",\n      \"sub_parameter\": \"Basophil\",\n      \"value\": 0.07,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"Total RBC count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 5.17,\n      \"units\": \"millions/cmm\"\n    },\n    {\n      \"parameter\": \"Hematocrit/PCV\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 41.8,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"Platelet count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 248,\n      \"units\": \"x10^3/ul\"\n    }\n  ]\n}"
+}

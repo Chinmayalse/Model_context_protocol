@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block title %}MCP - Results History{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0"><i class="fas fa-history me-2 text-primary"></i>Results History</h4>
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus me-2"></i>Process New File</a>
+            </div>
+            <div class="card-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs mb-3" id="resultsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="individual-tab" data-bs-toggle="tab" data-bs-target="#individual" 
+                                type="button" role="tab" aria-controls="individual" aria-selected="true">
+                            <i class="fas fa-file me-2"></i>Individual Results
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="batch-tab" data-bs-toggle="tab" data-bs-target="#batch" 
+                                type="button" role="tab" aria-controls="batch" aria-selected="false">
+                            <i class="fas fa-layer-group me-2"></i>Batch Jobs
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Tab content -->
+                <div class="tab-content" id="resultsTabContent">
+                    <!-- Individual Results Tab -->
+                    <div class="tab-pane fade show active" id="individual" role="tabpanel" aria-labelledby="individual-tab">
+                        {% if results %}
+                            <div class="table-responsive">
+                                <table class="table table-hover custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Filename</th>
+                                            <th>Type</th>
+                                            <th>Created</th>
+                                            <th>Size</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for result in results %}
+                                            <tr class="result-row">
+                                                <td class="fw-medium">{{ result.filename }}</td>
+                                                <td>
+                                                    <span class="badge bg-primary rounded-pill px-3">
+                                                        {{ result.type|capitalize }}
+                                                    </span>
+                                                </td>
+                                                <td><span class="text-muted"><i class="far fa-calendar-alt me-1"></i>{{ result.created }}</span></td>
+                                                <td><span class="text-muted"><i class="fas fa-file-alt me-1"></i>{{ (result.size / 1024)|round(1) }} KB</span></td>
+                                                <td class="text-end">
+                                                    <div class="btn-group">
+                                                        <a href="{{ url_for('view_result', filename=result.filename) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye me-1"></i>View</a>
+                                                        <a href="{{ url_for('download_result', filename=result.filename) }}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-download me-1"></i>Download</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info d-flex align-items-center">
+                                <i class="fas fa-info-circle me-3 fs-4"></i>
+                                <div>
+                                    <h5 class="alert-heading mb-1">No Individual Results Yet</h5>
+                                    <p class="mb-0">Process some medical reports to see your results here.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center py-4">
+                                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg"><i class="fas fa-file-medical me-2"></i>Process Your First Report</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Batch Jobs Tab -->
+                    <div class="tab-pane fade" id="batch" role="tabpanel" aria-labelledby="batch-tab">
+                        {% if batches %}
+                            <div class="table-responsive">
+                                <table class="table table-hover custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Batch ID</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th>Progress</th>
+                                            <th>Created</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for batch in batches %}
+                                            <tr>
+                                                <td class="fw-medium">#{{ batch.id }}</td>
+                                                <td>{{ batch.name }}</td>
+                                                <td>
+                                                    {% if batch.status == 'completed' %}
+                                                        <span class="badge bg-success rounded-pill px-3">
+                                                            <i class="fas fa-check me-1"></i>Completed
+                                                        </span>
+                                                    {% elif batch.status == 'processing' %}
+                                                        <span class="badge bg-info rounded-pill px-3">
+                                                            <i class="fas fa-spinner me-1"></i>Processing
+                                                        </span>
+                                                    {% elif batch.status == 'failed' %}
+                                                        <span class="badge bg-danger rounded-pill px-3">
+                                                            <i class="fas fa-times me-1"></i>Failed
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="badge bg-secondary rounded-pill px-3">
+                                                            {{ batch.status|capitalize }}
+                                                        </span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% set progress_percent = ((batch.processed / batch.total_files) * 100)|round %}
+                                                    <div class="progress" style="height: 10px;">
+                                                        <div id="batch-progress-{{ batch.id }}" 
+                                                             class="progress-bar {% if batch.status == 'completed' %}bg-success{% elif batch.status == 'failed' %}bg-danger{% else %}bg-info{% endif %}" 
+                                                             role="progressbar" 
+                                                             style="width: 0%" 
+                                                             aria-valuemin="0" 
+                                                             aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">{{ batch.processed }}/{{ batch.total_files }} ({{ progress_percent }}%)</small>
+                                                    <script>
+                                                        document.addEventListener('DOMContentLoaded', function() {
+                                                            const progressBar = document.getElementById('batch-progress-{{ batch.id }}');
+                                                            progressBar.style.width = '{{ progress_percent }}%';
+                                                            progressBar.setAttribute('aria-valuenow', '{{ progress_percent }}');
+                                                        });
+                                                    </script>
+                                                </td>
+                                                <td><span class="text-muted"><i class="far fa-calendar-alt me-1"></i>{{ batch.created_at }}</span></td>
+                                                <td class="text-end">
+                                                    <div class="btn-group">
+                                                        <a href="{{ url_for('view_batch_results', batch_id=batch.id) }}" class="btn btn-sm btn-outline-primary"><i class="fas fa-eye me-1"></i>View</a>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger delete-batch-btn" data-batch-id="{{ batch.id }}"><i class="fas fa-trash me-1"></i>Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info d-flex align-items-center">
+                                <i class="fas fa-info-circle me-3 fs-4"></i>
+                                <div>
+                                    <h5 class="alert-heading mb-1">No Batch Jobs Yet</h5>
+                                    <p class="mb-0">Upload multiple files at once to create a batch processing job.</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Batch Confirmation Modal -->
+<div class="modal fade" id="deleteBatchModal" tabindex="-1" aria-labelledby="deleteBatchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteBatchModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this batch job and all its results? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteBatchForm" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle batch deletion
+        const deleteBatchModal = new bootstrap.Modal(document.getElementById('deleteBatchModal'));
+        const deleteBatchForm = document.getElementById('deleteBatchForm');
+        let batchToDelete = null;
+        
+        // Set up delete buttons
+        document.querySelectorAll('.delete-batch-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                batchToDelete = this.getAttribute('data-batch-id');
+                deleteBatchForm.action = `/batch/delete/${batchToDelete}`;
+                deleteBatchModal.show();
+            });
+        });
+    });
+</script>
+{% endblock %}

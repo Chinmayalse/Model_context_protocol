@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "file_path": "C:/test/file_0.txt",
+  "tool_name": "test_tool",
+  "batch_id": "8ae06598-a71b-437e-95a9-64c757a4b348",
+  "timestamp": "2025-06-01T17:15:06.643081",
+  "result": "Test result 0 for batch 8ae06598-a71b-437e-95a9-64c757a4b348"
+}

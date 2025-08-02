@@ -1,0 +1,4 @@
+2025-06-01 15:31:25,853 - __main__ - ERROR - Error testing batch-result relationship: column "metadata" does not exist
+LINE 3:                 WHERE metadata->>'batch_id' = '07625f9c-abbe...
+                              ^
+

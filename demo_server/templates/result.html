@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}MCP - {{ result.report_type }} Result{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    {{ result.report_type }} Report Results
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h6>File: {{ filename }}</h6>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('download_result', filename=json_filename) }}" class="btn btn-sm btn-outline-secondary">
+                            Download JSON
+                        </a>
+                        <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-primary">
+                            Process Another File
+                        </a>
+                    </div>
+                </div>
+                
+                {% if result.enhanced_text %}
+                <div class="report-results">
+                    <div class="json-content">
+                        <pre class="json-code"><code>{{ result.enhanced_text|tojson(indent=4) }}</code></pre>
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i> No enhanced results available for this report.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.json-content {
+    background-color: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    max-height: 700px;
+    overflow-y: auto;
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    position: relative;
+    margin-top: 1.5rem;
+}
+
+.json-content::before {
+    content: 'JSON Result';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.35rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+    letter-spacing: 0.02em;
+}
+
+.json-code {
+    font-family: 'Roboto Mono', 'Fira Code', monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+    color: #1f2937;
+}
+
+.json-code .key {
+    color: #8b5cf6;
+    font-weight: 500;
+}
+
+.json-code .string {
+    color: #10b981;
+}
+
+.json-code .number {
+    color: #f59e0b;
+    font-weight: 500;
+}
+
+.json-code .boolean {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.json-code .null {
+    color: #6b7280;
+    font-style: italic;
+}
+</style>
+
+<script>
+// Format JSON with syntax highlighting
+document.addEventListener('DOMContentLoaded', function() {
+    const jsonContent = document.querySelector('.json-code code');
+    if (jsonContent) {
+        const jsonText = jsonContent.textContent;
+        try {
+            // Parse and re-stringify for consistent formatting
+            const formattedJson = JSON.stringify(JSON.parse(jsonText), null, 4);
+            
+            // Add syntax highlighting
+            const highlighted = formattedJson
+                .replace(/"([^"]+)":/g, '"<span class="key">$1</span>":') // keys
+                .replace(/: "([^"]+)"/g, ': "<span class="string">$1</span>"') // strings
+                .replace(/: ([0-9]+)/g, ': <span class="number">$1</span>') // numbers
+                .replace(/: (true|false)/g, ': <span class="boolean">$1</span>') // booleans
+                .replace(/: null/g, ': <span class="null">null</span>'); // null
+            
+            jsonContent.innerHTML = highlighted;
+        } catch (e) {
+            console.error('Error formatting JSON:', e);
+        }
+    }
+});
+</script>
+{% endblock %}

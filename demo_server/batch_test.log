@@ -1,0 +1,16 @@
+2025-06-01 15:34:31,097 - __main__ - ERROR - Error verifying results: column "metadata" does not exist
+LINE 2: ...atus, total_files, processed, failed, created_at, metadata->...
+                                                             ^
+
+2025-06-01 15:34:31,197 - __main__ - ERROR - Error creating batch job: column "metadata" of relation "batch_jobs" does not exist
+LINE 4:                 tool_name, metadata, created_at, read) 
+                                   ^
+
+2025-06-01 15:34:31,320 - __main__ - ERROR - Error verifying results: column "metadata" does not exist
+LINE 2: ...atus, total_files, processed, failed, created_at, metadata->...
+                                                             ^
+
+2025-06-01 15:36:07,627 - __main__ - INFO - Created batch job with ID: 2 and batch_id: 21f9fe64-a10a-4e08-9422-b8244c69a3e4
+2025-06-01 15:36:07,877 - __main__ - INFO - Saved result IN-423-YENAP_Ventana Negative_20250601_150646.json to database with ID: 142
+2025-06-01 15:36:08,163 - __main__ - INFO - Saved result IN-423-YEOAG_Dako Negative_20250601_150745.json to database with ID: 143
+2025-06-01 15:36:08,290 - __main__ - INFO - Updated batch 21f9fe64-a10a-4e08-9422-b8244c69a3e4: processed=2, failed=0, status=completed

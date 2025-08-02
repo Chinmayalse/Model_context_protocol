@@ -1,0 +1,67 @@
+2025-06-01 15:56:19,477 - __main__ - INFO - Starting batch result storage tests...
+2025-06-01 15:56:19,477 - __main__ - INFO - Testing save_result_to_json function...
+2025-06-01 15:56:19,477 - tasks - INFO - Saving result to database with user_id=1, filename=test_file_test_tool_20250601_155619.json, batch_id=fa2ac1ae-dbde-44c5-9897-aa6bbf987c05
+2025-06-01 15:56:19,562 - db - ERROR - Database cursor error: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db.py", line 61, in get_db_cursor
+    yield cursor
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db_results.py", line 196, in save_result
+    cur.execute(query, params)
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\venv\Lib\site-packages\psycopg2\extras.py", line 146, in execute
+    return super().execute(query, vars)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.ForeignKeyViolation: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+
+2025-06-01 15:56:19,563 - db - ERROR - Error creating database cursor: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db.py", line 61, in get_db_cursor
+    yield cursor
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db_results.py", line 196, in save_result
+    cur.execute(query, params)
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\venv\Lib\site-packages\psycopg2\extras.py", line 146, in execute
+    return super().execute(query, vars)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.ForeignKeyViolation: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+
+2025-06-01 15:56:19,564 - db_results - ERROR - Error saving result: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db_results.py", line 196, in save_result
+    cur.execute(query, params)
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\venv\Lib\site-packages\psycopg2\extras.py", line 146, in execute
+    return super().execute(query, vars)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.ForeignKeyViolation: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+
+2025-06-01 15:56:19,564 - tasks - ERROR - Failed to save result to database: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\tasks.py", line 193, in save_result_to_json
+    ResultManager.save_result(
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\db_results.py", line 196, in save_result
+    cur.execute(query, params)
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\venv\Lib\site-packages\psycopg2\extras.py", line 146, in execute
+    return super().execute(query, vars)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.ForeignKeyViolation: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+
+2025-06-01 15:56:19,566 - tasks - INFO - JSON results saved to C:\Users\chinmay alse\Desktop\MCP_1\demo_server\chat_results\test_file_test_tool_20250601_155619.json
+2025-06-01 15:56:19,566 - __main__ - INFO - Result saved as test_file_test_tool_20250601_155619.json
+2025-06-01 15:56:19,566 - __main__ - ERROR - Test failed: JSON file was not saved at C:\Users\chinmay alse\Desktop\MCP_1\demo_server\results\test_file_test_tool_20250601_155619.json
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\test_batch_result_storage.py", line 182, in main
+    json_filename, result_batch_id = test_save_result_to_json()
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP_1\demo_server\test_batch_result_storage.py", line 60, in test_save_result_to_json
+    assert os.path.exists(json_path), f"JSON file was not saved at {json_path}"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: JSON file was not saved at C:\Users\chinmay alse\Desktop\MCP_1\demo_server\results\test_file_test_tool_20250601_155619.json
+Database connection error: insert or update on table "results" violates foreign key constraint "results_chat_id_fkey"
+DETAIL:  Key (chat_id)=(test_chat_id) is not present in table "chats".
+

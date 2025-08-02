@@ -1,0 +1,14 @@
+2025-06-01 15:28:36,369 - __main__ - INFO - Executing query: 
+            INSERT INTO results 
+            (user_id, filename, original_filename, processing_type, tool_used, 
+             status, result_data, batch_id, created_at, is_deleted)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        
+2025-06-01 15:28:36,378 - __main__ - INFO - With parameters: (1, 'test_result_c240f856-345a-422a-9eba-ab88a4b366c7.json', 'test_file.pdf', 'process', 'test_tool', 'completed', <psycopg2._json.Json object at 0x000001DEB163F1A0>, '7625c82a-367a-4f08-aa57-cfe3b600ea3c', datetime.datetime(2025, 6, 1, 15, 28, 36, 369735), False)
+2025-06-01 15:28:36,414 - __main__ - INFO - Successfully saved result with ID: 141
+2025-06-01 15:28:36,490 - __main__ - INFO - Retrieved result: test_result_c240f856-345a-422a-9eba-ab88a4b366c7.json
+2025-06-01 15:28:36,598 - __main__ - ERROR - Error testing batch relationship: column "processed" of relation "batch_jobs" does not exist
+LINE 2:                (user_id, status, total_files, processed, fai...
+                                                      ^
+

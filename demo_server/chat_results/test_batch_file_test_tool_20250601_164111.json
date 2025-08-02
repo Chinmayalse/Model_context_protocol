@@ -1,0 +1,9 @@
+{
+    "content": "This is a batch test result",
+    "metadata": {
+        "test": true,
+        "timestamp": "2025-06-01T11:11:11.938278"
+    },
+    "batch_id": "6b133de3-6842-490b-a4b8-6f8272261adb",
+    "status": "completed"
+}

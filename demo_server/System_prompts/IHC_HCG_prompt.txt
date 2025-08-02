@@ -1,0 +1,38 @@
+Extract all the specified parameters and their properties from this report and present it as a JSON List as per the following template:
+
+{
+    "test": "IHC Report",
+    "hospital_lab_name": "",
+    "hospital_lab_location": "",
+    "Patient Name":"NA",
+    "parameters": [
+        {
+          "clinicalHistory": "Clinical history details in the report.",
+          "specimen": "Specimen details, including any description of the specimen.",
+          "macroscopicFindings": "Description of macroscopic findings, if present.",
+          "microscopicDescription": "Description of microscopic findings, if present.",
+          "impression": "Summary or diagnosis based on findings.",
+          "comments": "Any additional comments, including any note within the comment section.",
+          "note": "Separate note at the end of the document (distinct from comments)."
+        }
+    ]
+}
+
+Rules:
+
+Extract only information directly relevant to each specified field. Ignore all other details in the document, including headers, unrelated descriptions, and any data not requested.
+For the "comments" key, if a note appears within the comment section, include this note in the "comments" key content. The comments section will span over multiple pages, make sure you extract the data from all the pages for the "comments" section.
+For any distinct "note" at the document's end, extract it separately and include it in the "note" key, even if it contains similar information to the comments.
+Important: Capture only the requested details in this exact JSON format. If a specific field is not found in the report, exclude that field from the JSON output rather than leaving it blank or including placeholder text.
+
+All the Keys : clinicalHistory, specimen, macroscopicFindings, microscopicDescription, impression, comments, note
+These keys should be present in the json, and no other keys should be present.
+
+In some cases the comments section may contain a lot of text and many subheads. The subheaders would be represented by a '-' before the header name. For example: "-Note". If there is a '-' before the header name then it should be considered as a subhead which should come in this section in the json : "comments": "". The comments should include all the text starting from the start of the comments till the point where the text is "Note:" which is without the '-'. This Note would likely be towards the end of the text, with just Note with no dash('-')
+Make sure to extract "References" and add it as a part of the "comments" into the json.
+There might be other text blocks starting which look like: "Interpretive guide for Estrogen and Progesterone Receptor:" or "Optimal algorithm for ER/PgR testing" or "Interpretive Guide for Her-2/neu testing:" or "Scoring system : Her-2/neu" or "Optimal tissue handling guidelines:". If any of these text blocks start with any of these texts, then please add the entire text paragraph within the comments section in the json.
+
+Important note:
+Please go through the page and extract the correct Patient name, Hospital name and its location.
+the address should be same as mentioned in the report.
+Hospital name should be same as per the report. dont confuse it for client name.

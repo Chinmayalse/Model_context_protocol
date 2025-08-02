@@ -1,0 +1,107 @@
+{% extends "base_auth.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center">
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title justify-center mb-4">Create Account</h2>
+            
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-error shadow-lg mb-4 animate__animated animate__fadeIn">
+                            <div>
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span>{{ message }}</span>
+                            </div>
+                            <button type="button" class="btn btn-ghost btn-xs btn-circle alert-close-btn">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <style>
+                .animate__animated {
+                    animation-duration: 0.5s;
+                }
+                .animate__fadeIn {
+                    animation-name: fadeIn;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            </style>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Add click event listeners to all close buttons
+                    document.querySelectorAll('.alert-close-btn').forEach(function(btn) {
+                        btn.addEventListener('click', function() {
+                            const alert = this.closest('.alert');
+                            alert.classList.remove('animate__fadeIn');
+                            alert.classList.add('animate__fadeOut');
+                            setTimeout(function() {
+                                alert.style.display = 'none';
+                            }, 500);
+                        });
+                    });
+                    
+                    // Auto-hide alerts after 5 seconds
+                    setTimeout(function() {
+                        document.querySelectorAll('.alert').forEach(function(alert) {
+                            alert.classList.remove('animate__fadeIn');
+                            alert.classList.add('animate__fadeOut');
+                            setTimeout(function() {
+                                alert.style.display = 'none';
+                            }, 500);
+                        });
+                    }, 5000);
+                });
+            </script>
+            
+            <form method="POST" action="{{ url_for('signup') }}">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Username</span>
+                    </label>
+                    <input type="text" name="username" placeholder="johndoe" class="input input-bordered" required />
+                </div>
+                
+                <div class="form-control mt-4">
+                    <label class="label">
+                        <span class="label-text">Email</span>
+                    </label>
+                    <input type="email" name="email" placeholder="email@example.com" class="input input-bordered" required />
+                </div>
+                
+                <div class="form-control mt-4">
+                    <label class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    <input type="password" name="password" placeholder="••••••••" class="input input-bordered" required />
+                </div>
+                
+                <div class="form-control mt-4">
+                    <label class="label">
+                        <span class="label-text">Confirm Password</span>
+                    </label>
+                    <input type="password" name="confirm_password" placeholder="••••••••" class="input input-bordered" required />
+                </div>
+                
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p>Already have an account? <a href="{{ url_for('login') }}" class="link link-primary">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

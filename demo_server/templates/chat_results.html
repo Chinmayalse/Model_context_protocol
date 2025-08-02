@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Report Chat - Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .card-header {
+            background-color: #f0f7ff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1.25rem 1.5rem;
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
+        .table {
+            margin-bottom: 0;
+        }
+        .table th {
+            font-weight: 600;
+            color: #495057;
+            background-color: #f8f9fa;
+        }
+        .table td, .table th {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+        }
+        .badge-process {
+            background-color: #e1f5fe;
+            color: #0288d1;
+        }
+        .badge-summary {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+        .btn-icon {
+            width: 2.25rem;
+            height: 2.25rem;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .btn-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #0d6efd;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .back-link i {
+            margin-right: 0.5rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        .empty-state-icon {
+            font-size: 3rem;
+            color: #adb5bd;
+            margin-bottom: 1rem;
+        }
+        .empty-state-text {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">
+            <i class="bi bi-arrow-left"></i> Back to Chat
+        </a>
+        
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Medical Report Results</h4>
+                <p class="text-muted mb-0">View and manage your processed medical reports</p>
+            </div>
+            <div class="card-body">
+                {% if results %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>Type</th>
+                                <th>Created</th>
+                                <th>Size</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                            <tr>
+                                <td>{{ result.filename }}</td>
+                                <td>
+                                    {% if result.type == 'summary' %}
+                                    <span class="badge badge-summary">Summary</span>
+                                    {% else %}
+                                    <span class="badge badge-process">Process</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ result.created }}</td>
+                                <td>{{ (result.size / 1024)|round(1) }} KB</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ url_for('view_result', filename=result.filename) }}" class="btn btn-outline-primary btn-icon" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a href="{{ url_for('download_result', filename=result.filename) }}" class="btn btn-outline-secondary btn-icon" title="Download">
+                                            <i class="bi bi-download"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="empty-state">
+                    <div class="empty-state-icon">
+                        <i class="bi bi-folder2-open"></i>
+                    </div>
+                    <p class="empty-state-text">No results found. Process some medical reports to see them here.</p>
+                    <a href="/" class="btn btn-primary">
+                        <i class="bi bi-chat-dots me-2"></i> Go to Chat
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

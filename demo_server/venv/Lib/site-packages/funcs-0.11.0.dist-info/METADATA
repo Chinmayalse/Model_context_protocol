@@ -1,0 +1,158 @@
+Metadata-Version: 2.3
+Name: funcs
+Version: 0.11.0
+Summary: Functional programming in Python.
+Project-URL: Homepage, https://github.com/nekitdev/funcs
+Project-URL: Chat, https://nekit.dev/chat
+Project-URL: Documentation, https://nekitdev.github.io/funcs
+Project-URL: Funding, https://nekit.dev/funding
+Project-URL: Issues, https://github.com/nekitdev/funcs/issues
+Project-URL: Repository, https://github.com/nekitdev/funcs
+Author-email: nekitdev <nekit@nekit.dev>
+License: MIT License
+        
+        Copyright (c) 2023-present, Nikita Tikhonov (nekitdev)
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: function,functional,python
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Requires-Dist: attrs>=24.2.0
+Requires-Dist: solus>=1.2.2
+Requires-Dist: typing-aliases>=1.10.1
+Requires-Dist: typing-extensions>=4.12.2
+Description-Content-Type: text/markdown
+
+![Image]
+
+# `funcs`
+
+[![License][License Badge]][License]
+[![Version][Version Badge]][Package]
+[![Downloads][Downloads Badge]][Package]
+[![Discord][Discord Badge]][Discord]
+
+[![Documentation][Documentation Badge]][Documentation]
+[![Check][Check Badge]][Actions]
+[![Test][Test Badge]][Actions]
+[![Coverage][Coverage Badge]][Coverage]
+
+> *Functional programming in Python.*
+
+## Installing
+
+**Python 3.8 or above is required.**
+
+### `pip`
+
+Installing the library with `pip` is quite simple:
+
+```console
+$ pip install funcs
+```
+
+Alternatively, the library can be installed from source:
+
+```console
+$ pip install git+https://github.com/nekitdev/funcs.git
+```
+
+Or via cloning the repository:
+
+```console
+$ git clone https://github.com/nekitdev/funcs.git
+$ cd funcs
+$ pip install .
+```
+
+### `uv`
+
+You can add `funcs` as a dependency with the following command:
+
+```console
+$ uv add funcs
+```
+
+## Documentation
+
+You can find the documentation [here][Documentation].
+
+## Support
+
+If you need support with the library, you can send an [email][Email]
+or refer to the official [Discord server][Discord].
+
+## Changelog
+
+You can find the changelog [here][Changelog].
+
+## Security Policy
+
+You can find the Security Policy of `funcs` [here][Security].
+
+## Contributing
+
+If you are interested in contributing to `funcs`, make sure to take a look at the
+[Contributing Guide][Contributing Guide], as well as the [Code of Conduct][Code of Conduct].
+
+## License
+
+`funcs` is licensed under the MIT License terms. See [License][License] for details.
+
+[Image]: https://github.com/nekitdev/funcs/blob/main/funcs.svg?raw=true
+
+[Email]: mailto:support@nekit.dev
+
+[Discord]: https://nekit.dev/chat
+
+[Actions]: https://github.com/nekitdev/funcs/actions
+
+[Changelog]: https://github.com/nekitdev/funcs/blob/main/CHANGELOG.md
+[Code of Conduct]: https://github.com/nekitdev/funcs/blob/main/CODE_OF_CONDUCT.md
+[Contributing Guide]: https://github.com/nekitdev/funcs/blob/main/CONTRIBUTING.md
+[Security]: https://github.com/nekitdev/funcs/blob/main/SECURITY.md
+
+[License]: https://github.com/nekitdev/funcs/blob/main/LICENSE
+
+[Package]: https://pypi.org/project/funcs
+[Coverage]: https://codecov.io/gh/nekitdev/funcs
+[Documentation]: https://nekitdev.github.io/funcs
+
+[Discord Badge]: https://img.shields.io/discord/728012506899021874
+[License Badge]: https://img.shields.io/pypi/l/funcs
+[Version Badge]: https://img.shields.io/pypi/v/funcs
+[Downloads Badge]: https://img.shields.io/pypi/dm/funcs
+
+[Documentation Badge]: https://github.com/nekitdev/funcs/workflows/docs/badge.svg
+[Check Badge]: https://github.com/nekitdev/funcs/workflows/check/badge.svg
+[Test Badge]: https://github.com/nekitdev/funcs/workflows/test/badge.svg
+[Coverage Badge]: https://codecov.io/gh/nekitdev/funcs/branch/main/graph/badge.svg

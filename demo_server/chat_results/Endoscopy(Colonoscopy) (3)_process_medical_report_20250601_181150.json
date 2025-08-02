@@ -1,0 +1,101 @@
+{
+    "status": "error",
+    "message": "Unknown error occurred",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\batch\\Endoscopy(Colonoscopy) (3).pdf",
+    "batch_id": "70928c58-04d4-4e15-89bc-a0900ce4b73c",
+    "success": true,
+    "extracted_text": "Dr. SATYAPRAKASH'S\n7\nCentre for Digestive and Liver Diseases\nDr. B. S. SatyaPrakash M.D., D.M., (PGI) FACG ( USA )\nInternational Member: American Society of GI Endoscopy & European Society of GI Endoscopy\nPatient Name\n: Prakash babu\nPatient Id\n: 15347\nDone By\n: Dr BS Satyaprakash\nClinical Diagnosis\nAge/Sex\n: 67/Male\nDate\nRef. By\n: 17-Sep-2018\n: Self\nFinal Diagnosis\n: Normal mucosal study\n: Post op Ca Colon\nCOLONOSCOPY REPORT\nRectum & Sigmoid Colon ::\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nDescending & Transverse Colon :\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nAscending Colon & Cecum :\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nNormal cecum, ileocecal opening and appendicular opening.\nFinal Diagnosis :\nNORMAL MUCOSAL STUDY.\nSmakars\nment\n#229, 14th Cross, M.C. Layout, Vijayanagar, Bangalore - 560 040.\nPh: 9880017337, 23143216, 32986770, Fax: 23395284, www. drsatyaprakash.com, e-mail: satyaprakashbs@gmail.com\nSE+4 CE\nLISE",
+    "extraction_method": "gemini_2.0_flash",
+    "report_type": "COLONOSCOPY",
+    "confidence": 0.5,
+    "keywords_identified": [
+        "colonoscopy",
+        "colon",
+        "rectum",
+        "cecum"
+    ],
+    "reason": "",
+    "enhanced_text": {
+        "test": "Colonoscopy report",
+        "hospital_lab_name": "Centre for Digestive and Liver Diseases",
+        "hospital_lab_location": "Vijayanagar, Bangalore",
+        "Patient Name": "Prakash babu",
+        "parameters": [
+            {
+                "Impression": "NORMAL MUCOSAL STUDY",
+                "Imaging Comment": "Rectum & Sigmoid Colon :: Normal vascular pattern. No polyp, ulcer, tumor or stricture.\nDescending & Transverse Colon : Normal vascular pattern. No polyp, ulcer, tumor or stricture.\nAscending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture.\nNormal cecum, ileocecal opening and appendicular opening."
+            }
+        ]
+    },
+    "verified_text": "{\n  \"test\": \"Colonoscopy report\",\n  \"hospital_lab_name\": \"Centre for Digestive and Liver Diseases\",\n  \"hospital_lab_location\": \"Vijayanagar, Bangalore\",\n  \"Patient Name\": \"Prakash babu\",\n  \"parameters\": [\n    {\n      \"Impression\": \"NORMAL MUCOSAL STUDY\",\n      \"Imaging Comment\": \"Rectum & Sigmoid Colon :: Normal vascular pattern. No polyp, ulcer, tumor or stricture. Descending & Transverse Colon : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Ascending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Normal cecum, ileocecal opening and appendicular opening.\"\n    }\n  ]\n}",
+    "processing_time": "15.17 seconds",
+    "file_processed": "Endoscopy(Colonoscopy) (3).pdf",
+    "timestamp": "2025-06-01 18:11:50",
+    "json_saved_to": "results\\colonoscopy\\Endoscopy(Colonoscopy) (3)_20250601_181150.json",
+    "context_messages": [
+        {
+            "level": "info",
+            "message": "Processing medical report: C:\\Users\\chinmay alse\\Desktop\\batch\\Endoscopy(Colonoscopy) (3).pdf"
+        },
+        {
+            "level": "info",
+            "message": "Converting PDF to images..."
+        },
+        {
+            "level": "info",
+            "message": "Converted PDF to 1 images using enhanced method"
+        },
+        {
+            "level": "info",
+            "message": "Successfully converted PDF to 1 images"
+        },
+        {
+            "level": "info",
+            "message": "Extracting text using method: auto"
+        },
+        {
+            "level": "info",
+            "message": "Attempting extraction with Gemini 2.0 Flash..."
+        },
+        {
+            "level": "info",
+            "message": "Extraction with Gemini 2.0 Flash successful"
+        },
+        {
+            "level": "info",
+            "message": "Reading classification system prompt..."
+        },
+        {
+            "level": "info",
+            "message": "Classifying the medical report..."
+        },
+        {
+            "level": "info",
+            "message": "Classification with Gemini successful"
+        },
+        {
+            "level": "info",
+            "message": "Classification complete: COLONOSCOPY"
+        },
+        {
+            "level": "info",
+            "message": "Enhancing extracted text for report type: COLONOSCOPY"
+        },
+        {
+            "level": "info",
+            "message": "Text enhancement successful"
+        },
+        {
+            "level": "info",
+            "message": "Verification with Gemini complete"
+        },
+        {
+            "level": "info",
+            "message": "Medical report processing complete in 15.17 seconds"
+        },
+        {
+            "level": "info",
+            "message": "Removed temporary image: converted_images\\Endoscopy(Colonoscopy) (3)_page_1_converted.png"
+        }
+    ]
+}

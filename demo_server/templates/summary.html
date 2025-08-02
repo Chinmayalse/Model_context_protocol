@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}MCP - Medical Report Summary{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    Medical Report Summary
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h6>File: {{ filename }}</h6>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('download_result', filename=json_filename) }}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-download me-1"></i> Download JSON
+                        </a>
+                        <a href="{{ url_for('view_results') }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-arrow-left me-1"></i> Back to Results
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Patient Information Section -->
+                <div class="summary-section mb-4">
+                    <h5 class="section-title"><i class="fas fa-user-circle me-2 text-primary"></i>Patient Information</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-label">Patient Name</div>
+                                <div class="info-value">{{ result.Patient_Name|default(result['Patient Name'], true) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-label">Age</div>
+                                <div class="info-value">{{ result.Age }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-label">Gender</div>
+                                <div class="info-value">{{ result.Gender }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-label">Date</div>
+                                <div class="info-value">{{ result.Date }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary Section -->
+                <div class="summary-section mb-4">
+                    <h5 class="section-title"><i class="fas fa-clipboard-list me-2 text-primary"></i>Report Summary</h5>
+                    <div class="summary-content">
+                        {{ result.Summary }}
+                    </div>
+                </div>
+                
+                <!-- Extracted Text Section -->
+                <div class="summary-section">
+                    <h5 class="section-title"><i class="fas fa-file-medical-alt me-2 text-primary"></i>Extracted Text</h5>
+                    <div class="json-content">
+                        <pre class="json-code markdown-content">{{ result['Extract Text']|default(result.extracted_text, true) }}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-card {
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.summary-content {
+    background-color: #f8fafc;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    line-height: 1.6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-content {
+    white-space: pre-wrap;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const markdownContent = document.querySelector('.markdown-content');
+    if (markdownContent) {
+        const markdownText = markdownContent.textContent;
+        try {
+            markdownContent.innerHTML = marked.parse(markdownText);
+        } catch (e) {
+            console.error('Error parsing markdown:', e);
+        }
+    }
+});
+</script>
+{% endblock content %}

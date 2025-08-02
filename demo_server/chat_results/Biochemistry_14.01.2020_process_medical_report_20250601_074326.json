@@ -1,0 +1,240 @@
+{
+    "extracted_text": "APOLLO PROHEALTH SUPER YEAR 1\n\nNAME RESULT BIOLOGICAL REFERENCE INTERVALS UNITS\nGLUCOSE - PLASMA (FASTING) 129 * <=99 mg/dL\n(Hexokinase-endpoint) Increase risk of diabetes(impaired\nfasting Glucose) 100-125,\nDiabetic>=126\nGLYCOSYLATED HEMOGLOBIN (HBA1C) - WHOLE BLOOD 6.8 * Normal < 5.7% %\nGLYCOSYLATED HEMOGLOBIN (HBA1C) - Increased risk for Diabetes 5.7 -\nWHOLE BLOOD (for Exchange High 6.4%,\nPerformance Liquid Chromatography - NGSP Diabetes >= 6.5%\ncertified)\nUREA - SERUM / PLASMA 27 13 - 43 mg/dL\n(UREASE-GLDH-UV)\nCREATININE - SERUM / PLASMA 1.2 Male: 0.9 - 1.3 mg/dL\n(Jaffe Alkaline Picrate Kinetic/IDMS standardisation)\nURIC ACID - SERUM / PLASMA 8.2 * Male: 3.5 - 7.2 mg/dL\n(URICASE/PEROXIDASE)\nCHOLESTEROL - SERUM / PLASMA 214 * Desirable: <200 mg/dL\n(Enzymatic Method) Borderline High: 200 - 239\nHigh: >=240\nHDL CHOLESTEROL - SERUM / PLASMA 40 Low: <40 mg/dL\n(Direct measure.Polymer-polyanion) Desirable: >=40\nLDL CHOLESTEROL - SERUM / PLASMA (DIRECT 154 * Desirable: <=130 mg/dL\nLDL) Borderline High: 130 - 159\n(Direct Measurement) High: 160 - 190\nVery High: >=190\nTRIGLYCERIDES - SERUM / PLASMA 190 * Desirable: <150 mg/dL\n(GLYCEROL 3 PHOSPHATE OXIDASE - GPO) Borderline High: 150 - 199\nHigh: >=200\nVery High: >=500\nTOTAL CHOLESTEROL/HDL CHOLESTEROL 5.4 * < 4.5\n\nRatio(Calculated)\n(This parameter is not in the scope of NABL\naccreditation)\nBILIRUBIN TOTAL - SERUM 0.6 0.0 - 1.3 mg/dL\n(Diazonium Salt) (This test is not under the\nscope of NABL)\nBILIRUBIN CONJUGATED (DIRECT) - SERUM 0.2 0.0 - 0.5 mg/dL\n(Diazo Reaction) (This test is not under the\nscope of NABL)\nBILIRUBIN UNCONJUGATED - SERUM 0.4 0.0 - 1.2 mg/dL\n(Calculated) (This parameter is not in the scope\nof NABL accreditation)\nPROTEIN TOTAL - SERUM 6.8 Ambulatory: 6.4 - 8.3 g/dL\n(Biuret) Recumbent: 6.0 -7.8\nALBUMIN - SERUM 4.4 20 - 60 Yr: 3.5 - 5.2 g/dL\n(BCC)\nGLOBULIN - SERUM(Calculated) 2.4 2.0 - 3.5 g/dL\n(This parameter is not in the scope of NABL\naccreditation)\nAST (SGOT) - SERUM 21 Male: <35 U/L\n(UV without P5P)\nALT (SGPT) - SERUM 23 Male: <45 U/L\n(UV without P5P)\nGGT(GAMMA GLUTAMYL TRANSPEPTIDASE - SERUM 28 Male: < 64 U/L\n(L - Gamma - Glutamyl - 3 Carboxy - 4\nnitroanilide)\nALKALINE PHOSPHATASE - SERUM 126 <128 U/L\n(PNPP.AMP buffer.Kinetic)\n\nReport Status:Final\n* END OF REPORT *",
+    "extraction_method": "gemini_2.0_flash",
+    "report_type": "CLINICAL_BIOCHEMISTRY",
+    "confidence": 0.5,
+    "keywords_identified": [],
+    "reason": "",
+    "enhanced_text": {
+        "test": "Clinical Biochemistry",
+        "hospital_lab_name": "",
+        "hospital_lab_location": "",
+        "reported_date": "",
+        "Patient Name": " ",
+        "parameters": [
+            {
+                "testname": "Glucose tolerance",
+                "parameters": [
+                    {
+                        "parameter": "HbA1c",
+                        "value": 6.8,
+                        "units": "%"
+                    },
+                    {
+                        "parameter": "Random blood sugar",
+                        "value": "",
+                        "units": ""
+                    },
+                    {
+                        "parameter": "Post pranadial blood sugar",
+                        "value": "",
+                        "units": ""
+                    },
+                    {
+                        "parameter": "Fasting blood sugar",
+                        "value": 129,
+                        "units": "mg/dL"
+                    }
+                ]
+            },
+            {
+                "testname": "Lipid profile",
+                "parameters": [
+                    {
+                        "parameter": "HDL",
+                        "value": 40,
+                        "units": "ml/min"
+                    },
+                    {
+                        "parameter": "LDL",
+                        "value": 154,
+                        "units": "ml/min/m2"
+                    },
+                    {
+                        "parameter": "Total cholestrol",
+                        "value": 214,
+                        "units": "mmol/L"
+                    },
+                    {
+                        "parameter": "Triglycerides",
+                        "value": 190,
+                        "units": "mu/L"
+                    },
+                    {
+                        "parameter": "VLDL",
+                        "value": "",
+                        "units": ""
+                    }
+                ]
+            },
+            {
+                "testname": "Liver function test",
+                "parameters": [
+                    {
+                        "parameter": "Albumin",
+                        "value": 4.4,
+                        "units": "ml/min"
+                    },
+                    {
+                        "parameter": "Alkaline Phosphatase",
+                        "value": 126,
+                        "units": "ml/min/m2"
+                    },
+                    {
+                        "parameter": "ALT",
+                        "value": 23,
+                        "units": "mmol/L"
+                    },
+                    {
+                        "parameter": "AST",
+                        "value": 21,
+                        "units": "mu/L"
+                    },
+                    {
+                        "parameter": "Direct Bilurubin",
+                        "value": 0.2,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Globulin",
+                        "value": 2.4,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Indirect bilirubin",
+                        "value": 0.4,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Serum total protein",
+                        "value": 6.8,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Gamma-Glutamyl Transferase (GGT)",
+                        "value": 28,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Total bilirubin",
+                        "value": 0.6,
+                        "units": "ng/dl"
+                    }
+                ]
+            },
+            {
+                "testname": "Renal function test",
+                "parameters": [
+                    {
+                        "parameter": "Blood urea nitrogen",
+                        "value": "",
+                        "units": ""
+                    },
+                    {
+                        "parameter": "Creatinine clearance",
+                        "value": "",
+                        "units": ""
+                    },
+                    {
+                        "parameter": "eGFR",
+                        "value": "",
+                        "units": ""
+                    },
+                    {
+                        "parameter": "Serum Creatinine",
+                        "value": 1.2,
+                        "units": "mu/L"
+                    },
+                    {
+                        "parameter": "Urea",
+                        "value": 27,
+                        "units": "ng/dl"
+                    },
+                    {
+                        "parameter": "Uric acid",
+                        "value": 8.2,
+                        "units": "ng/dl"
+                    }
+                ]
+            }
+        ]
+    },
+    "verified_text": "{\n  \"test\": \"Clinical Biochemistry\",\n  \"hospital_lab_name\": \"\",\n  \"hospital_lab_location\": \"\",\n  \"reported_date\": \"\",\n  \"Patient Name\": \"\",\n  \"parameters\": [\n    {\n      \"testname\": \"Glucose tolerance\",\n      \"parameters\": [\n        {\n          \"parameter\": \"HbA1c\",\n          \"value\": 6.8,\n          \"units\": \"%\"\n        },\n        {\n          \"parameter\": \"Random blood sugar\",\n          \"value\": \"\",\n          \"units\": \"\"\n        },\n        {\n          \"parameter\": \"Post pranadial blood sugar\",\n          \"value\": \"\",\n          \"units\": \"\"\n        },\n        {\n          \"parameter\": \"Fasting blood sugar\",\n          \"value\": 129,\n          \"units\": \"mg dL\"\n        }\n      ]\n    },\n    {\n      \"testname\": \"Lipid profile\",\n      \"parameters\": [\n        {\n          \"parameter\": \"HDL\",\n          \"value\": 40,\n          \"units\": \"ml min\"\n        },\n        {\n          \"parameter\": \"LDL\",\n          \"value\": 154,\n          \"units\": \"ml min m2\"\n        },\n        {\n          \"parameter\": \"Total cholestrol\",\n          \"value\": 214,\n          \"units\": \"mmol L\"\n        },\n        {\n          \"parameter\": \"Triglycerides\",\n          \"value\": 190,\n          \"units\": \"mu L\"\n        },\n        {\n          \"parameter\": \"VLDL\",\n          \"value\": \"\",\n          \"units\": \"\"\n        }\n      ]\n    },\n    {\n      \"testname\": \"Liver function test\",\n      \"parameters\": [\n        {\n          \"parameter\": \"Albumin\",\n          \"value\": 4.4,\n          \"units\": \"ml min\"\n        },\n        {\n          \"parameter\": \"Alkaline Phosphatase\",\n          \"value\": 126,\n          \"units\": \"ml min m2\"\n        },\n        {\n          \"parameter\": \"ALT\",\n          \"value\": 23,\n          \"units\": \"mmol L\"\n        },\n        {\n          \"parameter\": \"AST\",\n          \"value\": 21,\n          \"units\": \"mu L\"\n        },\n        {\n          \"parameter\": \"Direct Bilurubin\",\n          \"value\": 0.2,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Globulin\",\n          \"value\": 2.4,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Indirect bilirubin\",\n          \"value\": 0.4,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Serum total protein\",\n          \"value\": 6.8,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Gamma-Glutamyl Transferase (GGT)\",\n          \"value\": 28,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Total bilirubin\",\n          \"value\": 0.6,\n          \"units\": \"ng dl\"\n        }\n      ]\n    },\n    {\n      \"testname\": \"Renal function test\",\n      \"parameters\": [\n        {\n          \"parameter\": \"Blood urea nitrogen\",\n          \"value\": \"\",\n          \"units\": \"\"\n        },\n        {\n          \"parameter\": \"Creatinine clearance\",\n          \"value\": \"\",\n          \"units\": \"\"\n        },\n        {\n          \"parameter\": \"eGFR\",\n          \"value\": \"\",\n          \"units\": \"\"\n        },\n        {\n          \"parameter\": \"Serum Creatinine\",\n          \"value\": 1.2,\n          \"units\": \"mu L\"\n        },\n        {\n          \"parameter\": \"Urea\",\n          \"value\": 27,\n          \"units\": \"ng dl\"\n        },\n        {\n          \"parameter\": \"Uric acid\",\n          \"value\": 8.2,\n          \"units\": \"ng dl\"\n        }\n      ]\n    }\n  ]\n}",
+    "processing_time": "29.80 seconds",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\MCP_1\\demo_server\\chat_uploads\\Biochemistry_14.01.2020.pdf",
+    "file_processed": "Biochemistry_14.01.2020.pdf",
+    "timestamp": "2025-06-01 07:43:26",
+    "success": true,
+    "json_saved_to": "results\\clinical_biochemistry\\Biochemistry_14.01.2020_20250601_074326.json",
+    "context_messages": [
+        {
+            "level": "info",
+            "message": "Processing medical report: C:\\Users\\chinmay alse\\Desktop\\MCP_1\\demo_server\\chat_uploads\\Biochemistry_14.01.2020.pdf"
+        },
+        {
+            "level": "info",
+            "message": "Converting PDF to images..."
+        },
+        {
+            "level": "info",
+            "message": "Converted PDF to 2 images using enhanced method"
+        },
+        {
+            "level": "info",
+            "message": "Successfully converted PDF to 2 images"
+        },
+        {
+            "level": "info",
+            "message": "Extracting text using method: auto"
+        },
+        {
+            "level": "info",
+            "message": "Attempting extraction with Gemini 2.0 Flash..."
+        },
+        {
+            "level": "info",
+            "message": "Extraction with Gemini 2.0 Flash successful"
+        },
+        {
+            "level": "info",
+            "message": "Reading classification system prompt..."
+        },
+        {
+            "level": "info",
+            "message": "Classifying the medical report..."
+        },
+        {
+            "level": "info",
+            "message": "Classification with Gemini successful"
+        },
+        {
+            "level": "info",
+            "message": "Classification complete: CLINICAL_BIOCHEMISTRY"
+        },
+        {
+            "level": "info",
+            "message": "Enhancing extracted text for report type: CLINICAL_BIOCHEMISTRY"
+        },
+        {
+            "level": "info",
+            "message": "Text enhancement successful"
+        },
+        {
+            "level": "info",
+            "message": "Verification with Gemini complete"
+        },
+        {
+            "level": "info",
+            "message": "Medical report processing complete in 29.80 seconds"
+        },
+        {
+            "level": "info",
+            "message": "Removed temporary image: converted_images\\Biochemistry_14.01.2020_page_1_converted.png"
+        },
+        {
+            "level": "info",
+            "message": "Removed temporary image: converted_images\\Biochemistry_14.01.2020_page_2_converted.png"
+        }
+    ],
+    "status": "completed"
+}

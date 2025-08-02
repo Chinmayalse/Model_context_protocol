@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MCP - Medical Report Processing{% endblock %}</title>
+    
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fadeIn': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Additional custom styles */
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.6;
+        }
+        
+        .typing-indicator span:nth-child(1) {
+            animation: bounce 1s infinite;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation: bounce 1s infinite 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation: bounce 1s infinite 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-base-200">
+    <!-- Drawer with persistent sidebar state -->
+    <div class="drawer" id="main-drawer">
+        <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+        
+        <!-- Page content -->
+        <div class="drawer-content flex flex-col">
+            <!-- Navbar -->
+            <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30">
+                <div class="navbar-start">
+                    <button class="btn btn-square btn-ghost" id="sidebar-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <a href="{{ url_for('index') }}" class="btn btn-ghost normal-case text-xl">
+                        <div class="avatar">
+                            <div class="w-8 rounded-full">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                            </div>
+                        </div>
+                        <span class="ml-2 hidden sm:inline">Medical Report Processing</span>
+                        <span class="ml-2 sm:hidden">MCP</span>
+                    </a>
+                </div>
+                
+                <div class="navbar-end flex items-center gap-4">
+                    {% if current_user.is_authenticated %}
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-ghost btn-circle avatar placeholder">
+                            <div class="bg-neutral text-neutral-content rounded-full w-10">
+                                <span>{{ current_user.username[0]|upper }}</span>
+                            </div>
+                        </label>
+                        <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                            <li><a>{{ current_user.username }}</a></li>
+                            <li><a href="{{ url_for('view_results') }}">My Reports</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-ghost btn-sm">Login</a>
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-sm">Sign Up</a>
+                    {% endif %}
+                    <div class="dropdown dropdown-end">
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                            <i class="fa-solid fa-gear text-lg"></i>
+                        </label>
+                        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <button id="theme-toggle" class="justify-between">
+                                    Toggle Theme
+                                    <i class="fa-solid fa-moon"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main content -->
+            <div class="container mx-auto px-2 sm:px-4 py-4 max-w-5xl">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="alert alert-warning shadow-lg mb-4">
+                            <div>
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <ul class="mb-0">
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="flex-none">
+                                <button class="btn btn-sm btn-ghost">Dismiss</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                
+                {% block content %}{% endblock %}
+            </div>
+            
+            <!-- Footer -->
+            <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
+                <div>
+                    <p>MCP &copy; 2025 - AI-powered Medical Report Processing</p>
+                </div>
+            </footer>
+        </div>
+        
+        <!-- Sidebar with collapse arrow -->
+        <div class="drawer-side z-40">
+            <label for="drawer-toggle" class="drawer-overlay"></label>
+            <aside class="bg-base-100 w-72 h-full shadow-xl relative">
+                <!-- Collapse arrow button - repositioned to top right -->
+                <button id="collapse-sidebar" class="btn btn-circle btn-sm absolute -right-3 top-3 z-50 bg-base-100 shadow-md border-base-300">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <!-- Sidebar header -->
+                <div class="p-4 bg-primary text-primary-content">
+                    <div class="flex items-center space-x-2">
+                        <div class="avatar">
+                            <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-lg">Medical Report</h2>
+                            <p class="text-xs opacity-80">AI-powered processing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar content -->
+                <ul class="menu p-4 w-full text-base-content">
+                    <li>
+                        <a href="{{ url_for('index') }}" class="{% if request.path == '/' %}active{% endif %}">
+                            <i class="fa-solid fa-plus"></i> New Chat
+                        </a>
+                    </li>
+                    <li class="menu-title">
+                        <span>Chat History</span>
+                    </li>
+                    {% if current_user.is_authenticated and current_user.chat_history and current_user.chat_history|length > 0 %}
+                        {% for chat in current_user.chat_history %}
+                        <li>
+                            <div class="flex justify-between items-center w-full">
+                                <a href="{{ url_for('view_chat', chat_id=chat.id) }}" class="flex-1">
+                                    <i class="fa-solid fa-message"></i> {{ chat.title }}
+                                    <div class="text-xs opacity-60">{{ chat.date }}</div>
+                                </a>
+                                <button class="btn btn-ghost btn-xs text-error delete-chat-btn" title="Delete chat" data-chat-id="{{ chat.id }}" data-chat-title="{{ chat.title }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li>
+                            <a class="opacity-50">
+                                <i class="fa-solid fa-message"></i> No chat history
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+                
+                <!-- Theme selector at bottom -->
+                <div class="btm-nav btm-nav-xs bg-base-200 h-12 w-full absolute bottom-0">
+                    <button id="mobile-theme-toggle" class="text-primary">
+                        <i class="fa-solid fa-moon"></i>
+                        <span class="btm-nav-label text-xs">Theme</span>
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
+    
+    <!-- Loading spinner -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-base-100 p-6 rounded-box shadow-lg text-center">
+            <span class="loading loading-spinner loading-lg text-primary"></span>
+            <p class="mt-2">Processing...</p>
+        </div>
+    </div>
+    
+    <!-- Delete confirmation modal -->
+    <div id="delete-confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-base-100 p-6 rounded-box shadow-lg max-w-md w-full">
+            <h3 class="font-bold text-lg mb-4">Confirm Deletion</h3>
+            <p class="py-4">Are you sure you want to delete this chat? This action cannot be undone.</p>
+            <div class="modal-action flex justify-end gap-2 mt-6">
+                <button id="cancel-delete" class="btn">CANCEL</button>
+                <button id="confirm-delete" class="btn btn-error">DELETE</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script>
+        // Main functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const collapseSidebar = document.getElementById('collapse-sidebar');
+            const drawerToggle = document.getElementById('drawer-toggle');
+            const html = document.documentElement;
+            
+            // ===== Theme Management =====
+            // Check for saved theme preference or use device preference
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            html.setAttribute('data-theme', savedTheme);
+            
+            // Update icon based on current theme
+            function updateThemeIcon() {
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                document.querySelectorAll('#theme-toggle i, #mobile-theme-toggle i').forEach(icon => {
+                    icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+                });
+            }
+            
+            updateThemeIcon();
+            
+            // Toggle theme function
+            function toggleTheme() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon();
+            }
+            
+            // Add event listeners to theme toggle buttons
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            // ===== Sidebar Management =====
+            // Load sidebar state from localStorage
+            const sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
+            drawerToggle.checked = sidebarOpen;
+            
+            // Update collapse button icon based on sidebar state
+            function updateCollapseIcon() {
+                const isOpen = drawerToggle.checked;
+                if (collapseSidebar) {
+                    collapseSidebar.querySelector('i').className = isOpen ? 'fa-solid fa-chevron-left' : 'fa-solid fa-chevron-right';
+                }
+            }
+            
+            updateCollapseIcon();
+            
+            // Toggle sidebar function
+            function toggleSidebar() {
+                drawerToggle.checked = !drawerToggle.checked;
+                localStorage.setItem('sidebarOpen', drawerToggle.checked);
+                updateCollapseIcon();
+            }
+            
+            // Direct approach for sidebar toggle
+            document.getElementById('sidebar-toggle').onclick = function() {
+                document.getElementById('drawer-toggle').checked = !document.getElementById('drawer-toggle').checked;
+                localStorage.setItem('sidebarOpen', document.getElementById('drawer-toggle').checked);
+                updateCollapseIcon();
+            };
+            
+            // Add event listener to collapse button
+            if (collapseSidebar) {
+                collapseSidebar.addEventListener('click', toggleSidebar);
+            }
+            
+            // ===== Other UI Elements =====
+            // Dismiss alert
+            document.querySelectorAll('.alert button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.alert').remove();
+                });
+            });
+        });
+        
+        // Toast function
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            toast.className = `alert alert-${type} animate-fadeIn shadow-lg mb-2 fixed top-4 right-4 z-50 max-w-sm`;
+            toast.innerHTML = `
+                <div class="flex justify-between w-full">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button class="btn btn-ghost btn-xs" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Handle chat deletion with modal confirmation
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteModal = document.getElementById('delete-confirmation-modal');
+            const cancelDeleteBtn = document.getElementById('cancel-delete');
+            const confirmDeleteBtn = document.getElementById('confirm-delete');
+            let currentChatButton = null;
+            let currentChatId = null;
+            
+            // Show modal when delete button is clicked
+            document.querySelectorAll('.delete-chat-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Store reference to the clicked button and chat ID
+                    currentChatButton = this;
+                    currentChatId = this.dataset.chatId;
+                    const chatTitle = this.dataset.chatTitle;
+                    
+                    // Update modal text with chat title
+                    const modalText = deleteModal.querySelector('p');
+                    modalText.textContent = `Are you sure you want to delete the chat "${chatTitle}"? This action cannot be undone.`;
+                    
+                    // Show the modal
+                    deleteModal.classList.remove('hidden');
+                });
+            });
+            
+            // Hide modal when cancel is clicked
+            cancelDeleteBtn.addEventListener('click', function() {
+                deleteModal.classList.add('hidden');
+                currentChatButton = null;
+                currentChatId = null;
+            });
+            
+            // Handle click outside modal to cancel
+            deleteModal.addEventListener('click', function(e) {
+                if (e.target === deleteModal) {
+                    deleteModal.classList.add('hidden');
+                    currentChatButton = null;
+                    currentChatId = null;
+                }
+            });
+            
+            // Handle delete confirmation
+            confirmDeleteBtn.addEventListener('click', function() {
+                if (!currentChatId || !currentChatButton) return;
+                
+                // Hide the modal
+                deleteModal.classList.add('hidden');
+                
+                // Send AJAX request to delete chat
+                fetch(`/delete_chat/${currentChatId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove the chat from the sidebar
+                        const chatItem = currentChatButton.closest('li');
+                        chatItem.remove();
+                        
+                        // Show success toast
+                        showToast(data.message, 'success');
+                        
+                        // If we're on the deleted chat's page, redirect to home
+                        const currentPath = window.location.pathname;
+                        if (currentPath.includes(`/view_chat/${currentChatId}`)) {
+                            window.location.href = '/';
+                        }
+                    } else {
+                        // Show error toast
+                        showToast(data.message, 'error');
+                    }
+                    
+                    // Reset current references
+                    currentChatButton = null;
+                    currentChatId = null;
+                })
+                .catch(error => {
+                    showToast('An error occurred while deleting the chat', 'error');
+                    console.error('Error:', error);
+                    
+                    // Reset current references
+                    currentChatButton = null;
+                    currentChatId = null;
+                });
+            });
+        });
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

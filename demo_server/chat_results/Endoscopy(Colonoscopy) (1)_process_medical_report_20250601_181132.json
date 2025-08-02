@@ -1,0 +1,104 @@
+{
+    "status": "error",
+    "message": "Unknown error occurred",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\batch\\Endoscopy(Colonoscopy) (1).pdf",
+    "batch_id": "70928c58-04d4-4e15-89bc-a0900ce4b73c",
+    "success": true,
+    "extracted_text": "Dr. SATYAPRAKASH'S\nCentre for Digestive and Liver Diseases\nDr. B. S. Satya Prakash M.D., D.M., ( PGI ) FACG (USA)\nInternational Member: American Society of GI Endoscopy & European Society of GI Endoscopy\nPatient Name\nAge/Sex\nDate\n: 67/Male\n١٥\n: 23-Nov-2020\nRef. By\n: DR SP\nFinal Diagnosis\n:\n: PRAKASH BABU\nPatient Id\n: 30166\nDone By\n: Dr Manjunath Patil\nClinical Diagnosis\n: Ca COLON FOR SURVELLANCE.\nCOLONOSCOPY REPORT\nRectum and Sigmoid colon\nNormal vascular pattern. Hemorrhoiods present\nFew dimunitive polyps noted in the Rectum-removed using\nbiopsy forceps and sent for HPE.\nTransverse Colon :\nNormal vascular pattern.\npolyp, ulcer, tumor or stricture.\nAscending Colon & Cecum :\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nNormal cecum, ileocecal opening and appendicular opening.\nTerminal Ileum-Normal upto 10cms.\nFinal Diagnosis :\nDIMUNITIVE POLYPS IN THE RECTUM(s/p removal\nusing biopsy forceps).\nFEW UNCLOMPLICATED COLONIC DIVERTICULI.\nGRADE 2 INTERNAL HEMORRHOIDS.\nREMARKS-BIOPSY AWAITED.\nmp\nShakass\nTOM\nSES CEOFF TE\ni-scan\nUSB\n#229, 14th Cross, M.C Layout, Vijayanagar, Bangalore - 560 040\nPh: 9880017337, 23143216, 32986770, Fax: 23395284, www.drsatyaprakash.com, e-mail: satyaprakashbs@gmail.com\nLISB",
+    "extraction_method": "gemini_2.0_flash",
+    "report_type": "COLONOSCOPY",
+    "confidence": 0.5,
+    "keywords_identified": [
+        "colonoscopy",
+        "rectum",
+        "sigmoid colon",
+        "biopsy",
+        "cecum"
+    ],
+    "reason": "",
+    "enhanced_text": [
+        {
+            "test": "Colonoscopy report",
+            "hospital_lab_name": "Centre for Digestive and Liver Diseases",
+            "hospital_lab_location": "Vijayanagar, Bangalore",
+            "Patient Name": "PRAKASH BABU",
+            "parameters": [
+                {
+                    "Impression": "DIMUNITIVE POLYPS IN THE RECTUM(s/p removal using biopsy forceps). FEW UNCLOMPLICATED COLONIC DIVERTICULI. GRADE 2 INTERNAL HEMORRHOIDS.",
+                    "Imaging Comment": "Rectum and Sigmoid colon: Normal vascular pattern. Hemorrhoiods present. Few dimunitive polyps noted in the Rectum-removed using biopsy forceps and sent for HPE. Transverse Colon : Normal vascular pattern. Ascending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Normal cecum, ileocecal opening and appendicular opening. Terminal Ileum-Normal upto 10cms."
+                }
+            ]
+        }
+    ],
+    "verified_text": "[\n  {\n    \"test\": \"Colonoscopy report\",\n    \"hospital_lab_name\": \"Centre for Digestive and Liver Diseases\",\n    \"hospital_lab_location\": \"Vijayanagar, Bangalore\",\n    \"Patient Name\": \"PRAKASH BABU\",\n    \"parameters\": [\n      {\n        \"Impression\": \"DIMUNITIVE POLYPS IN THE RECTUM(s p removal using biopsy forceps). FEW UNCLOMPLICATED COLONIC DIVERTICULI. GRADE 2 INTERNAL HEMORRHOIDS.\",\n        \"Imaging Comment\": \"Rectum and Sigmoid colon: Normal vascular pattern. Hemorrhoiods present. Few dimunitive polyps noted in the Rectum-removed using biopsy forceps and sent for HPE. Transverse Colon : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Ascending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Normal cecum, ileocecal opening and appendicular opening. Terminal Ileum-Normal upto 10cms.\"\n      }\n    ]\n  }\n]",
+    "processing_time": "18.03 seconds",
+    "file_processed": "Endoscopy(Colonoscopy) (1).pdf",
+    "timestamp": "2025-06-01 18:11:32",
+    "json_saved_to": "results\\colonoscopy\\Endoscopy(Colonoscopy) (1)_20250601_181132.json",
+    "context_messages": [
+        {
+            "level": "info",
+            "message": "Processing medical report: C:\\Users\\chinmay alse\\Desktop\\batch\\Endoscopy(Colonoscopy) (1).pdf"
+        },
+        {
+            "level": "info",
+            "message": "Converting PDF to images..."
+        },
+        {
+            "level": "info",
+            "message": "Converted PDF to 1 images using enhanced method"
+        },
+        {
+            "level": "info",
+            "message": "Successfully converted PDF to 1 images"
+        },
+        {
+            "level": "info",
+            "message": "Extracting text using method: auto"
+        },
+        {
+            "level": "info",
+            "message": "Attempting extraction with Gemini 2.0 Flash..."
+        },
+        {
+            "level": "info",
+            "message": "Extraction with Gemini 2.0 Flash successful"
+        },
+        {
+            "level": "info",
+            "message": "Reading classification system prompt..."
+        },
+        {
+            "level": "info",
+            "message": "Classifying the medical report..."
+        },
+        {
+            "level": "info",
+            "message": "Classification with Gemini successful"
+        },
+        {
+            "level": "info",
+            "message": "Classification complete: COLONOSCOPY"
+        },
+        {
+            "level": "info",
+            "message": "Enhancing extracted text for report type: COLONOSCOPY"
+        },
+        {
+            "level": "info",
+            "message": "Text enhancement successful"
+        },
+        {
+            "level": "info",
+            "message": "Verification with Gemini complete"
+        },
+        {
+            "level": "info",
+            "message": "Medical report processing complete in 18.03 seconds"
+        },
+        {
+            "level": "info",
+            "message": "Removed temporary image: converted_images\\Endoscopy(Colonoscopy) (1)_page_1_converted.png"
+        }
+    ]
+}

@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block title %}MCP - Medical Report Processing{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-header bg-white p-3">
+                <div class="d-flex align-items-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="Medical AI" class="img-fluid me-3" style="max-height: 40px;">
+                    <h4 class="mb-0">Medical Report Processing</h4>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Action Tabs -->
+                <ul class="nav nav-tabs mb-4" id="actionTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="process-tab" data-bs-toggle="tab" data-bs-target="#process" type="button" role="tab" aria-controls="process" aria-selected="true">
+                            <i class="fas fa-cogs me-2"></i>Process
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="summarize-tab" data-bs-toggle="tab" data-bs-target="#summarize" type="button" role="tab" aria-controls="summarize" aria-selected="false">
+                            <i class="fas fa-file-alt me-2"></i>Summarize
+                        </button>
+                    </li>
+                </ul>
+                
+                <!-- Tab Content -->
+                <div class="tab-content" id="actionTabsContent">
+                    <!-- Process Tab -->
+                    <div class="tab-pane fade show active" id="process" role="tabpanel" aria-labelledby="process-tab">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <h5 class="mb-3 fw-bold">Medical Report Processor</h5>
+                                <p class="mb-3">Upload your medical report to extract text, classify, and receive structured JSON results in a single operation.</p>
+                                
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <span class="badge bg-primary"><i class="fas fa-file-medical me-1"></i> PDF</span>
+                                    <span class="badge bg-primary"><i class="fas fa-image me-1"></i> Images</span>
+                                    <span class="badge bg-primary"><i class="fas fa-file-alt me-1"></i> Reports</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="process-form">
+                                    <input type="hidden" name="action" value="process">
+                                    
+                                    <div class="upload-area" id="process-upload-area">
+                                        <div class="d-flex align-items-center">
+                                            <div class="upload-icon me-3">
+                                                <i class="fas fa-file-medical-alt"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1 fw-bold">Drag & Drop Medical Report</h5>
+                                                <p class="mb-0 text-muted">Supported formats: PDF, PNG, JPG, JPEG</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4 d-flex">
+                                            <input type="file" name="file" id="process-file-input" class="d-none" accept=".pdf,.png,.jpg,.jpeg">
+                                            <button type="button" class="btn btn-outline-primary" id="process-browse-btn">
+                                                <i class="fas fa-folder-open me-2"></i> Browse Files
+                                            </button>
+                                            
+                                            <button type="submit" class="btn btn-primary ms-3">
+                                                <i class="fas fa-magic me-2"></i> Process Report
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="selected-file mt-4 d-none" id="process-selected-file-container">
+                                            <div class="alert alert-success d-inline-flex align-items-center py-2 px-3">
+                                                <i class="fas fa-check-circle me-2"></i>
+                                                <span id="process-selected-file"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Summarize Tab -->
+                    <div class="tab-pane fade" id="summarize" role="tabpanel" aria-labelledby="summarize-tab">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 mb-4 mb-lg-0">
+                                <h5 class="mb-3 fw-bold">Medical Report Summarizer</h5>
+                                <p class="mb-3">Upload your medical report to generate a structured summary with key information and formatted text.</p>
+                                
+                                <div class="d-flex flex-wrap gap-2 mb-3">
+                                    <span class="badge bg-primary"><i class="fas fa-file-medical me-1"></i> PDF</span>
+                                    <span class="badge bg-primary"><i class="fas fa-image me-1"></i> Images</span>
+                                    <span class="badge bg-primary"><i class="fas fa-file-alt me-1"></i> Reports</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="summarize-form">
+                                    <input type="hidden" name="action" value="summarize">
+                                    
+                                    <div class="upload-area" id="summarize-upload-area">
+                                        <div class="d-flex align-items-center">
+                                            <div class="upload-icon me-3">
+                                                <i class="fas fa-file-medical-alt"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-1 fw-bold">Drag & Drop Medical Report</h5>
+                                                <p class="mb-0 text-muted">Supported formats: PDF, PNG, JPG, JPEG</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4 d-flex">
+                                            <input type="file" name="file" id="summarize-file-input" class="d-none" accept=".pdf,.png,.jpg,.jpeg">
+                                            <button type="button" class="btn btn-outline-primary" id="summarize-browse-btn">
+                                                <i class="fas fa-folder-open me-2"></i> Browse Files
+                                            </button>
+                                            
+                                            <button type="submit" class="btn btn-primary ms-3">
+                                                <i class="fas fa-file-alt me-2"></i> Summarize Report
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="selected-file mt-4 d-none" id="summarize-selected-file-container">
+                                            <div class="alert alert-success d-inline-flex align-items-center py-2 px-3">
+                                                <i class="fas fa-check-circle me-2"></i>
+                                                <span id="summarize-selected-file"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="text-center mb-4">How It Works</h3>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-upload fa-3x text-primary"></i>
+                </div>
+                <h5 class="card-title">1. Upload Your Report</h5>
+                <p class="card-text">Upload your medical report file in PDF, PNG, or JPG format. Our system accepts various types of medical reports.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-brain fa-3x text-primary"></i>
+                </div>
+                <h5 class="card-title">2. AI Processing</h5>
+                <p class="card-text">Our advanced AI system processes the report, extracting text and identifying the report type and key information.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-file-alt fa-3x text-primary"></i>
+                </div>
+                <h5 class="card-title">3. View Results</h5>
+                <p class="card-text">Review the extracted text or classification results. Download the results in JSON format for further use.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // File upload handling function
+    function setupFileUpload(uploadAreaId, fileInputId, browseBtnId, selectedFileId, containerFileId) {
+        const uploadArea = document.getElementById(uploadAreaId);
+        const fileInput = document.getElementById(fileInputId);
+        const browseBtn = document.getElementById(browseBtnId);
+        const selectedFile = document.getElementById(selectedFileId);
+        const containerFile = document.getElementById(containerFileId);
+        
+        // Browse button click handler
+        browseBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // File input change handler
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                displayFileInfo(file, selectedFile, containerFile);
+            }
+        });
+        
+        // Drag and drop handlers
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('bg-light');
+            uploadArea.style.borderColor = 'var(--primary-color)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('bg-light');
+            uploadArea.style.borderColor = 'var(--border-color)';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('bg-light');
+            uploadArea.style.borderColor = 'var(--border-color)';
+            
+            if (e.dataTransfer.files.length > 0) {
+                const file = e.dataTransfer.files[0];
+                fileInput.files = e.dataTransfer.files;
+                displayFileInfo(file, selectedFile, containerFile);
+            }
+        });
+    }
+    
+    // Function to display file information
+    function displayFileInfo(file, selectedFileElement, containerElement) {
+        // Format file size
+        let fileSize;
+        if (file.size < 1024) {
+            fileSize = file.size + ' bytes';
+        } else if (file.size < 1024 * 1024) {
+            fileSize = (file.size / 1024).toFixed(1) + ' KB';
+        } else {
+            fileSize = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+        
+        // Get file extension
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        let fileIcon;
+        
+        // Set icon based on file type
+        if (fileExtension === 'pdf') {
+            fileIcon = 'fa-file-pdf';
+        } else if (['jpg', 'jpeg', 'png'].includes(fileExtension)) {
+            fileIcon = 'fa-file-image';
+        } else {
+            fileIcon = 'fa-file';
+        }
+        
+        // Update the selected file element
+        selectedFileElement.innerHTML = `<i class="fas ${fileIcon} me-2"></i> ${file.name} <span class="text-muted ms-2">(${fileSize})</span>`;
+        containerElement.classList.remove('d-none');
+    }
+    
+    // Set up file upload for process tab
+    setupFileUpload(
+        'process-upload-area',
+        'process-file-input',
+        'process-browse-btn',
+        'process-selected-file',
+        'process-selected-file-container'
+    );
+    
+    // Set up file upload for summarize tab
+    setupFileUpload(
+        'summarize-upload-area',
+        'summarize-file-input',
+        'summarize-browse-btn',
+        'summarize-selected-file',
+        'summarize-selected-file-container'
+    );
+    
+    // Add animation to the cards
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach((card, index) => {
+            // Add a slight delay to each card for a staggered effect
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+        
+        // Add loading spinner behavior
+        const forms = document.querySelectorAll('form');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        
+        if (forms && loadingOverlay) {
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    // Validate that a file was selected
+                    const fileInput = form.querySelector('input[type="file"]');
+                    if (fileInput && fileInput.files.length > 0) {
+                        // Show loading spinner with message
+                        const loadingText = loadingOverlay.querySelector('.loading-text');
+                        if (loadingText) {
+                            loadingText.textContent = 'Processing your medical report...';
+                        }
+                        
+                        // Add the 'show' class to make the overlay visible
+                        loadingOverlay.classList.add('show');
+                    }
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,1181 @@
+"""
+Chat Interface for Medical Report Processing
+
+This module provides a Flask-based chat interface for interacting with the MCP tools.
+It automatically detects which tool to call based on user queries and supports file uploads.
+"""
+
+import os
+import json
+import asyncio
+import tempfile
+import uuid
+import time
+import atexit
+from datetime import datetime
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, send_from_directory
+from flask_login import LoginManager, current_user, login_required, login_user, logout_user
+from db_users import User  # Using PostgreSQL User class
+from db_results import ResultManager  # Using PostgreSQL Results management
+from werkzeug.utils import secure_filename
+from contextlib import AsyncExitStack
+
+# MCP client imports
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+import google.generativeai as genai
+from google.generativeai import types
+
+# Configure Google API
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "AIzaSyDDBBTclRJjECny3q01Y57TIG9C6ZfVuTY")
+genai.configure(api_key=GOOGLE_API_KEY)
+
+# Initialize Gemini model for chat
+CHAT_MODEL = genai.GenerativeModel('gemini-2.0-flash')
+
+# MCP Server configuration
+MCP_SERVER_SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mcp_server.py")
+
+# Global variables for persistent connection
+mcp_client = None
+mcp_client_lock = asyncio.Lock()
+# Cache for available tools to avoid frequent fetching
+cached_tools = None
+last_tools_fetch_time = 0
+TOOLS_CACHE_TTL = 300  # Cache tools for 5 minutes (in seconds)
+
+# MCP Client class for the chat app
+class MCPClient:
+    def __init__(self):
+        self.session = None
+        self.exit_stack = AsyncExitStack()
+        self.stdio = None
+        self.write = None
+        self.logs = []
+    
+    async def connect(self):
+        """Connect to the MCP server"""
+        print("\n[CLIENT] Connecting to MCP server...")
+        # Server configuration
+        server_params = StdioServerParameters(
+            command="python",
+            args=[MCP_SERVER_SCRIPT, "--transport=stdio"],
+        )
+        
+        # Connect to the server
+        print("[CLIENT] Establishing stdio transport...")
+        stdio_transport = await self.exit_stack.enter_async_context(
+            stdio_client(server_params)
+        )
+        self.stdio, self.write = stdio_transport
+        print("[CLIENT] Creating client session...")
+        self.session = await self.exit_stack.enter_async_context(
+            ClientSession(self.stdio, self.write)
+        )
+        
+        # Initialize the connection
+        print("[CLIENT] Initializing connection...")
+        await self.session.initialize()
+        print("[CLIENT] Successfully connected to MCP server!")
+        return True
+    
+    async def call_tool(self, tool_name, **kwargs):
+        """Call an MCP tool"""
+        if not self.session:
+            raise Exception("Not connected to MCP server")
+        
+        print(f"\n[CLIENT] Calling MCP tool: {tool_name} with args: {kwargs}")
+        result = await self.session.call_tool(tool_name, arguments=kwargs)
+        print(f"[CLIENT] Received response from tool: {tool_name}")
+        
+        if hasattr(result, "content") and result.content:
+            return result.content[0].text
+        return str(result)
+    
+    async def close(self):
+        """Close the connection"""
+        await self.exit_stack.aclose()
+
+# Initialize Flask application
+app = Flask(__name__)
+app.secret_key = os.urandom(24)
+
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)  # For flash messages and session
+
+# Configuration
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chat_uploads')
+RESULTS_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chat_results')
+ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
+
+# Create necessary directories if they don't exist
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(RESULTS_FOLDER, exist_ok=True)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload size
+
+# Helper functions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_timestamp():
+    return datetime.now().strftime('%Y%m%d_%H%M%S')
+
+def save_result_to_json(result, filename_base, tool_name, chat_id=None):
+    """Save results to the database and return a unique filename"""
+    timestamp = get_timestamp()
+    json_filename = f"{filename_base}_{tool_name}_{timestamp}.json"
+    
+    # Determine processing type based on tool name
+    if 'summarize' in tool_name.lower():
+        processing_type = 'summary'
+    else:
+        processing_type = 'process'
+    
+    # Save to database
+    if current_user.is_authenticated:
+        ResultManager.save_result(
+            user_id=current_user.id,
+            filename=json_filename,
+            original_filename=filename_base,
+            processing_type=processing_type,
+            tool_used=tool_name,
+            result_data=result,
+            chat_id=chat_id
+        )
+    
+    # For backward compatibility, also save to file system
+    json_path = os.path.join(RESULTS_FOLDER, json_filename)
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(result, f, indent=4, ensure_ascii=False)
+    
+    return json_filename
+
+async def get_mcp_client():
+    """
+    Get or create a persistent MCP client connection.
+    Returns a shared client instance to avoid reconnecting for each request.
+    """
+    global mcp_client
+    if mcp_client is None or mcp_client.session is None:
+        async with mcp_client_lock:
+            if mcp_client is None or mcp_client.session is None:
+                print("[CLIENT] Creating new persistent MCP client connection")
+                mcp_client = MCPClient()
+                await mcp_client.connect()
+    return mcp_client
+
+async def get_available_tools():
+    """
+    Fetch available tools with caching to reduce server load.
+    """
+    global cached_tools, last_tools_fetch_time
+    current_time = time.time()
+    
+    # Use cached tools if they're still fresh
+    if cached_tools and (current_time - last_tools_fetch_time) < TOOLS_CACHE_TTL:
+        print("[CLIENT] Using cached tools list")
+        return cached_tools
+    
+    # Otherwise fetch fresh tools
+    client = await get_mcp_client()
+    print("[CLIENT] Fetching fresh tools list from MCP server")
+    cached_tools = await client.session.list_tools()
+    last_tools_fetch_time = current_time
+    return cached_tools
+
+async def close_mcp_client():
+    """
+    Close the persistent MCP client connection.
+    Called when the application shuts down.
+    """
+    global mcp_client
+    if mcp_client:
+        print("[CLIENT] Closing persistent MCP client connection")
+        await mcp_client.close()
+        mcp_client = None
+
+async def get_tool_with_gemini(message, has_file=False, session=None):
+    """
+    Use Gemini to determine which MCP tool to call based on the user's message.
+
+    This function:
+    1. Uses the persistent connection to fetch available tools (with caching).
+    2. Cleans each tool's schema recursively to ensure Gemini compatibility (removing problematic fields).
+    3. Constructs a Gemini-compatible function declaration list.
+    4. Sends the user message and tool schemas to Gemini with an explicit prompt to encourage function calling.
+    5. Returns the selected tool name, confidence, and tool arguments.
+
+    Args:
+        message (str): The user's request or query.
+        has_file (bool): Whether a file is attached to the request.
+        session: Optional session object for advanced usage.
+    Returns:
+        tuple: (tool_name, confidence, tool_args)
+    """
+    print("\n[GEMINI] Analyzing user request...")
+    try:
+        # Step 1: Get available tools (using the cached/shared connection)
+        print("[GEMINI] Fetching available MCP tools...")
+        mcp_tools = await get_available_tools()
+        print("[GEMINI] Converting MCP tool schemas to Gemini-compatible format...")
+        # Only include tools relevant to medical reports
+        medical_tools = [tool for tool in mcp_tools.tools if "medical_report" in tool.name]
+        function_declarations = []
+        
+        # Helper function to clean schema objects
+        def clean_schema_object(schema_obj):
+            """
+            Recursively remove problematic fields from a schema object for Gemini compatibility.
+
+            Args:
+                schema_obj (dict): The schema object to clean.
+            Returns:
+                dict: Cleaned schema object.
+            """
+            if not isinstance(schema_obj, dict):
+                return schema_obj
+            cleaned = {}
+            problematic_fields = ["additionalProperties", "$schema", "title", "default"]
+            for key, value in schema_obj.items():
+                if key in problematic_fields:
+                    continue
+                if key == "properties" and isinstance(value, dict):
+                    cleaned_props = {prop_name: clean_schema_object(prop_value) for prop_name, prop_value in value.items()}
+                    cleaned[key] = cleaned_props
+                elif isinstance(value, dict):
+                    cleaned[key] = clean_schema_object(value)
+                else:
+                    cleaned[key] = value
+            return cleaned
+            
+        # Process each tool and add to function declarations
+        for tool in medical_tools:
+            try:
+                # Clean the tool's schema
+                clean_schema = clean_schema_object(tool.inputSchema)
+                function_declarations.append({
+                    "name": tool.name,
+                    "description": tool.description,
+                    "parameters": clean_schema
+                })
+                print(f"[GEMINI] Added tool: {tool.name}")
+            except Exception as e:
+                print(f"[WARNING] Could not add tool {tool.name}: {str(e)}")
+                
+        # Step 2: Prepare Gemini tool object and prompt
+        tools = [types.Tool(function_declarations=function_declarations)]
+        prompt = f"""
+        You are an intelligent assistant for medical report processing.
+
+        You have access to the following tools (functions), each with a name, description, and parameters.
+        Your job is to:
+        - Carefully read the user's request.
+        - Select the single most appropriate tool from the provided list to fulfill the request.
+        - Call that tool with the correct parameters, using only the information provided by the user.
+        - If any required parameter is missing, make a best effort to infer it from the user's request, or leave it blank/null if truly unavailable.
+
+        Guidelines:
+        - Do NOT explain your reasoning or output any text other than the function call.
+        - Do NOT summarize, paraphrase, or rephrase the user's request.
+        - Do NOT call more than one tool at a time.
+        - If the user's request cannot be handled by any available tool, respond with a function call to the tool that is the closest fit.
+
+        TOOLS:
+        (The available tools, their descriptions, and parameters are provided below.)
+
+        USER REQUEST:
+        '{message}'
+
+        Respond ONLY with the function call in the required format.
+        """
+        print("[GEMINI] Calling Gemini with tool selection capabilities...")
+        model = genai.GenerativeModel(
+            "gemini-2.0-flash",
+            generation_config=genai.GenerationConfig(
+                temperature=0,
+                top_p=0.95
+            )
+        )
+
+        # Call Gemini with tools
+        response = model.generate_content(
+            prompt,
+            tools=tools
+        )
+        
+        # Print basic debug info
+        print(f"[DEBUG] Response type: {type(response)}")
+        
+        # Check for a function call using the structure from your friend's code
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'content') and candidate.content:
+                content = candidate.content
+                if hasattr(content, 'parts') and len(content.parts) > 0:
+                    part = content.parts[0]
+                    
+                    # Check if there's a function call
+                    if hasattr(part, 'function_call') and part.function_call:
+                        function_call = part.function_call
+                        print(f"[GEMINI] Function to call: {function_call.name}")
+                        print(f"[GEMINI] Arguments: {function_call.args}")
+                        
+                        tool_name = function_call.name
+                        
+                        # Extract arguments if any
+                        tool_args = {}
+                        if hasattr(function_call, 'args') and function_call.args:
+                            tool_args = function_call.args
+                        
+                        # Ensure file_path is included
+                        if "file_path" not in tool_args:
+                            tool_args["file_path"] = ""
+                            
+                        # Add extraction_method for process_medical_report if not present
+                        if tool_name == "process_medical_report" and "extraction_method" not in tool_args:
+                            tool_args["extraction_method"] = "auto"
+                            
+                        return tool_name, 0.95, tool_args
+                    
+                    # Fallback to text response if no function call
+                    elif hasattr(part, 'text'):
+                        text = part.text.strip()
+                        print(f"[GEMINI] No function call found. Text response: {text}")
+                        
+                        # Check if the text contains a tool name
+                        if "summarize_medical_report" in text:
+                            print(f"[GEMINI] Tool selected via text response: summarize_medical_report")
+                            return "summarize_medical_report", 0.95, {"file_path": ""}
+                        elif "process_medical_report" in text:
+                            print(f"[GEMINI] Tool selected via text response: process_medical_report")
+                            return "process_medical_report", 0.95, {"file_path": "", "extraction_method": "auto"}
+                        else:
+                            print(f"[GEMINI] Could not determine tool from text response")
+        
+        # If we couldn't determine the tool from the response, try classification approach
+        print("[GEMINI] Could not determine tool from Gemini response, falling back to classification approach")
+        
+        # Enhanced prompt for Gemini to classify the request with better handling of unclear cases
+        prompt = f"""
+        Determine if the user wants to summarize or process a medical report based on their message.
+        Message: "{message}"
+        
+        SUMMARIZE: If the user mentions summarization, summary, brief overview, condensed information, key points, highlights, or wants a concise version.
+        PROCESS: If the user wants detailed processing, analysis, extraction of specific information, verification, enhancement, or in-depth examination.
+        
+        If the message is unclear, analyze the context and user intent:
+        - If the message suggests the user wants quick information or is short on time, choose "summarize".
+        - If the message suggests the user needs comprehensive information or detailed analysis, choose "process".
+        - If the message contains specific questions about the report content, choose "process".
+        - If the message is completely ambiguous, choose "process" as the default.
+        
+        Respond with ONLY one word: "summarize" or "process".
+        """
+        
+        # Call Gemini for classification using the correct method
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(
+            prompt,
+            generation_config=genai.GenerationConfig(
+                temperature=0,
+                top_p=0.95,
+                top_k=0
+            )
+        )
+        
+        result = response.text.strip().lower()
+        print(f"Gemini classification result: {result}")
+        
+        # Determine tool based on classification
+        if "summarize" in result:
+            return "summarize_medical_report", 0.9, {"file_path": ""}
+        else:
+            return "process_medical_report", 0.8, {"file_path": "", "extraction_method": "auto"}
+            
+    except Exception as e:
+        print(f"[ERROR] Error using Gemini for tool selection: {str(e)}")
+        print("[FALLBACK] Using keyword-based tool detection instead")
+        
+        # Fallback to keyword-based detection
+        message = message.lower()
+        
+        # Check for summarization keywords
+        if any(keyword in message for keyword in ["summarize", "summary", "brief", "overview", "short"]):
+            return "summarize_medical_report", 0.7, {"file_path": ""}
+        
+        # Check for processing keywords
+        elif any(keyword in message for keyword in ["process", "analyze", "extract", "detail", "full"]):
+            return "process_medical_report", 0.7, {"file_path": "", "extraction_method": "auto"}
+        
+        # Default to process_medical_report
+        else:
+            return "process_medical_report", 0.5, {"file_path": "", "extraction_method": "auto"}
+
+                # Clean the tool's schema
+                clean_schema = clean_schema_object(tool.inputSchema)
+                function_declarations.append({
+                    "name": tool.name,
+                    "description": tool.description,
+                    "parameters": clean_schema
+                })
+                print(f"[GEMINI] Added tool: {tool.name}")
+            except Exception as e:
+                print(f"[WARNING] Could not add tool {tool.name}: {str(e)}")
+        # Step 2: Prepare Gemini tool object and prompt
+        tools = [types.Tool(function_declarations=function_declarations)]
+        prompt = f"""
+        You are an intelligent assistant for medical report processing.
+
+        You have access to the following tools (functions), each with a name, description, and parameters.
+        Your job is to:
+        - Carefully read the user's request.
+        - Select the single most appropriate tool from the provided list to fulfill the request.
+        - Call that tool with the correct parameters, using only the information provided by the user.
+        - If any required parameter is missing, make a best effort to infer it from the user's request, or leave it blank/null if truly unavailable.
+
+        Guidelines:
+        - Do NOT explain your reasoning or output any text other than the function call.
+        - Do NOT summarize, paraphrase, or rephrase the user's request.
+        - Do NOT call more than one tool at a time.
+        - If the user's request cannot be handled by any available tool, respond with a function call to the tool that is the closest fit.
+
+        TOOLS:
+        (The available tools, their descriptions, and parameters are provided below.)
+
+        USER REQUEST:
+        '{message}'
+
+        Respond ONLY with the function call in the required format.
+        """
+        print("[GEMINI] Calling Gemini with tool selection capabilities...")
+        model = genai.GenerativeModel(
+            "gemini-2.0-flash",
+            generation_config=genai.GenerationConfig(
+                temperature=0,
+                top_p=0.95
+            )
+        )
+        # Use a simpler approach without ToolConfig
+
+        response = model.generate_content(
+            prompt,
+            tools=tools
+        )
+        # Print basic debug info
+        print(f"[DEBUG] Response type: {type(response)}")
+        
+        # Check for a function call using the structure from your friend's code
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'content') and candidate.content:
+                content = candidate.content
+                if hasattr(content, 'parts') and len(content.parts) > 0:
+                    part = content.parts[0]
+                    
+                    # Check if there's a function call
+                    if hasattr(part, 'function_call') and part.function_call:
+                        function_call = part.function_call
+                        print(f"[GEMINI] Function to call: {function_call.name}")
+                        print(f"[GEMINI] Arguments: {function_call.args}")
+                        
+                        tool_name = function_call.name
+                        
+                        # Extract arguments if any
+                        tool_args = {}
+                        if hasattr(function_call, 'args') and function_call.args:
+                            tool_args = function_call.args
+                        
+                        # Ensure file_path is included
+                        if "file_path" not in tool_args:
+                            tool_args["file_path"] = ""
+                            
+                        # Add extraction_method for process_medical_report if not present
+                        if tool_name == "process_medical_report" and "extraction_method" not in tool_args:
+                            tool_args["extraction_method"] = "auto"
+                            
+                        return tool_name, 0.95, tool_args
+                    
+                    # Fallback to text response if no function call
+                    elif hasattr(part, 'text'):
+                        text = part.text.strip()
+                        print(f"[GEMINI] No function call found. Text response: {text}")
+                        
+                        # Check if the text contains a tool name
+                        if "summarize_medical_report" in text:
+                            print(f"[GEMINI] Tool selected via text response: summarize_medical_report")
+                            return "summarize_medical_report", 0.95, {"file_path": ""}
+                        elif "process_medical_report" in text:
+                            print(f"[GEMINI] Tool selected via text response: process_medical_report")
+                            return "process_medical_report", 0.95, {"file_path": "", "extraction_method": "auto"}
+                        else:
+                            print(f"[GEMINI] Could not determine tool from text response")
+        
+        # If we couldn't determine the tool from the response
+        print("[GEMINI] Could not determine tool from Gemini response, falling back to classification approach")
+        
+        # Enhanced prompt for Gemini to classify the request with better handling of unclear cases
+        prompt = f"""
+        Determine if the user wants to summarize or process a medical report based on their message.
+        Message: "{message}"
+        
+        SUMMARIZE: If the user mentions summarization, summary, brief overview, condensed information, key points, highlights, or wants a concise version.
+        PROCESS: If the user wants detailed processing, analysis, extraction of specific information, verification, enhancement, or in-depth examination.
+        
+        If the message is unclear, analyze the context and user intent:
+        - If the message suggests the user wants quick information or is short on time, choose "summarize".
+        - If the message suggests the user needs comprehensive information or detailed analysis, choose "process".
+        - If the message contains specific questions about the report content, choose "process".
+        - If the message is completely ambiguous, choose "process" as the default.
+        
+        Respond with ONLY one word: "summarize" or "process".
+        """
+        
+        # Call Gemini for classification using the correct method
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(
+            prompt,
+            generation_config=genai.GenerationConfig(
+                temperature=0,
+                top_p=0.95,
+                top_k=0
+            )
+        )
+        
+        result = response.text.strip().lower()
+        print(f"Gemini classification result: {result}")
+        
+        # Determine tool based on classification
+        if "summarize" in result:
+            return "summarize_medical_report", 0.9, {"file_path": ""}
+        else:
+            return "process_medical_report", 0.8, {"file_path": "", "extraction_method": "auto"}
+            
+    except Exception as e:
+        print(f"[ERROR] Error using Gemini for tool selection: {str(e)}")
+        print("[FALLBACK] Using keyword-based tool detection instead")
+        
+        # Fallback to keyword-based detection
+        message = message.lower()
+        
+        # Check for summarization keywords
+        if any(keyword in message for keyword in ["summarize", "summary", "brief", "overview", "short"]):
+            return "summarize_medical_report", 0.7, {"file_path": ""}
+        
+        # Check for processing keywords
+        elif any(keyword in message for keyword in ["process", "analyze", "extract", "detail", "full"]):
+            return "process_medical_report", 0.7, {"file_path": "", "extraction_method": "auto"}
+        
+        # Default to process_medical_report
+        else:
+            return "process_medical_report", 0.5, {"file_path": "", "extraction_method": "auto"}
+
+async def process_file(file_path, tool_name, tool_args=None, chat_id=None):
+    """Process a file using the specified tool through MCP client
+    
+    Args:
+    try:
+        # Prepare arguments
+        if tool_args is None:
+            tool_args = {}
+        
+        # Always set the file_path in the arguments
+        tool_args["file_path"] = file_path
+        
+        # Add default extraction_method if not provided for process_medical_report
+        if tool_name == "process_medical_report" and "extraction_method" not in tool_args:
+            tool_args["extraction_method"] = "auto"
+        
+        # Call the tool with all arguments using the persistent client
+        client = await get_mcp_client()
+        print(f"Calling {tool_name} with args: {tool_args}")
+        result_str = await client.call_tool(tool_name, **tool_args)
+        
+        # Parse the result string to JSON
+        try:
+            result = json.loads(result_str)
+        except json.JSONDecodeError:
+            # If the result is not valid JSON, use it as a text response
+            return result_str, "", None
+        
+        # Extract key information for response
+        if "error" in result:
+            response = f"Error processing file: {result['error']}"
+            return response, "", None
+        
+        # Save result to JSON file
+        base_filename = os.path.splitext(os.path.basename(file_path))[0]
+        json_filename = save_result_to_json(result, base_filename, tool_name, chat_id)
+        
+        # Generate a simple completion message without any details
+        if tool_name == "summarize_medical_report":
+            response = "Process completed. Medical report has been summarized successfully."
+        else:
+            response = "Process completed. Medical report has been processed successfully."
+        
+        # Don't send any JSON data to the frontend
+        # Just return the simple message and the filename for the "View Result" link
+        return response, "", json_filename
+        
+    except Exception as e:
+        error_msg = f"Error processing file: {str(e)}"
+        print(f"ERROR: {error_msg}")
+        return error_msg, "", None
+
+
+
+
+        
+    except Exception as e:
+        error_msg = f"Error processing file: {str(e)}"
+        print(f"ERROR: {error_msg}")
+        return error_msg, "", None
+
+async def answer_general_question(message):
+    """Answer a general question using Gemini"""
+    try:
+        # Create a chat session with Gemini
+        chat = CHAT_MODEL.start_chat()
+        response = await chat.send_message_async(message)
+        answer = response.text
+        
+        # No result file for general questions
+        return answer, "", None
+    except Exception as e:
+        error_msg = f"Error answering question: {str(e)}"
+        print(f"ERROR: {error_msg}")
+        return error_msg, "", None
+
+# Routes
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        # Debug
+        print(f"Login attempt for email: {email}")
+        
+        user = User.get_by_email(email)
+        if user:
+            print(f"Found user: {user.username}, ID: {user.id}")
+            print(f"User chat history: {user.chat_history}")
+            
+        if user and user.verify_password(password):
+            login_user(user)
+            print(f"Logged in user: {current_user.username}, ID: {current_user.id}")
+            print(f"Current user chat history: {current_user.chat_history}")
+            
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('index'))
+        
+        flash('Invalid email or password')
+    return render_template('login.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if password != confirm_password:
+            flash('Passwords do not match')
+            return render_template('signup.html')
+        
+        user, error = User.create(username, email, password)
+        if error:
+            flash(error)
+            return render_template('signup.html')
+        
+        login_user(user)
+        return redirect(url_for('index'))
+    
+    return render_template('signup.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+@app.route('/')
+@login_required
+def index():
+    # Get current time for the welcome message
+    now = datetime.now().strftime('%H:%M')
+    return render_template('chat_daisy.html', now=now, current_user=current_user)
+
+@app.route('/results')
+@login_required
+def view_results():
+    # Get results from database for the current user
+    results = ResultManager.get_results_by_user(current_user.id)
+    
+    # Format results for display
+    formatted_results = []
+    for result in results:
+        formatted_results.append({
+            'id': result['id'],
+            'filename': result['filename'],
+            'type': result['processing_type'],
+            'created': result['created_at'].strftime('%Y-%m-%d %H:%M:%S') if isinstance(result['created_at'], datetime) else result['created_at'],
+            'original_filename': result['original_filename']
+        })
+    
+    return render_template('results_daisy.html', results=formatted_results)
+
+@app.route('/view_result/<filename>')
+@login_required
+def view_result(filename):
+    # Get result from database
+    result_obj = ResultManager.get_result_by_filename(filename)
+    
+    if not result_obj:
+        # Try fallback to file system for backward compatibility
+        file_path = os.path.join(RESULTS_FOLDER, filename)
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                result_data = json.load(f)
+                return render_template('view_result.html', result=result_data, filename=filename)
+        
+        flash("Result not found")
+        return redirect(url_for('view_results'))
+    
+    # Use the result data from the database
+    result_data = result_obj['result_data']
+    
+    # For now, use the old template - we'll create a DaisyUI version later if needed
+    return render_template('view_result.html', result=result_data, filename=filename, result_id=result_obj['id'])
+
+@app.route('/download_result/<filename>')
+def download_result(filename):
+    return send_from_directory(RESULTS_FOLDER, filename, as_attachment=True)
+
+@app.route('/delete_result/<filename>', methods=['POST'])
+@login_required
+def delete_result(filename):
+    """Delete a result from the database"""
+    # First try to get the result from the database to get its ID
+    result_obj = ResultManager.get_result_by_filename(filename)
+    
+    if result_obj:
+        # Delete from database
+        success = ResultManager.delete_result(result_obj['id'], current_user.id)
+        if success:
+            # Also try to delete the file for backward compatibility
+            try:
+                file_path = os.path.join(RESULTS_FOLDER, filename)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+            except Exception:
+                # Ignore file system errors as the database is the source of truth
+                pass
+            return jsonify({"success": True}), 200
+        else:
+            return jsonify({"error": "Failed to delete result"}), 500
+    else:
+        # Try fallback to file system
+        file_path = os.path.join(RESULTS_FOLDER, filename)
+        if not os.path.exists(file_path):
+            return jsonify({"error": "Result not found"}), 404
+        
+        try:
+            os.remove(file_path)
+            return jsonify({"success": True}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+@app.route('/chat', methods=['POST'])
+@login_required
+def chat():
+    message = request.form.get('message', '')
+    chat_id = request.form.get('chat_id', '')
+    
+    # If no chat_id provided, create a new one
+    if not chat_id:
+        chat_id = str(uuid.uuid4())
+        # Create a title from the first message
+        title = message[:30] + "..." if len(message) > 30 else message
+        # Add to user's chat history
+        current_user.add_chat(chat_id, title, datetime.now().strftime("%Y-%m-%d %H:%M"))
+    
+    # Store the user message in chat history
+    current_user.add_message_to_chat(chat_id, message, is_user=True)
+    
+    # Check if a file was uploaded
+    has_file = False
+    file_path = None
+    
+    if 'file' in request.files and request.files['file'].filename:
+        file = request.files['file']
+        
+        if file and allowed_file(file.filename):
+            has_file = True
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+    
+    # Process the request
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
+    try:
+        if has_file:
+            # Use Gemini to determine which tool to call
+            tool_name, confidence, tool_args = loop.run_until_complete(get_tool_with_gemini(message, has_file))
+            print(f"Gemini selected tool: {tool_name} with confidence {confidence}")
+            
+            # Process the file with the selected tool
+            response, tool_result, json_filename = loop.run_until_complete(
+                process_file(file_path, tool_name, tool_args, chat_id)
+            )
+        else:
+            # Handle general questions
+            response, tool_result, json_filename = loop.run_until_complete(answer_general_question(message))
+            tool_name = "general_question"
+            confidence = 0.8
+    except Exception as e:
+        response = f"Sorry, there was an error processing your request: {str(e)}"
+        tool_result = ""
+        json_filename = None
+        tool_name = "error"
+        confidence = 0
+    finally:
+        loop.close()
+    
+    # Store the response in chat history
+    current_user.add_message_to_chat(chat_id, response, is_user=False)
+    
+    # Return the response
+    return jsonify({
+        "response": response,
+        "tool_result": tool_result,
+        "json_filename": json_filename,
+        "tool_name": tool_name,
+        "confidence": confidence
+    })
+
+# Close the persistent connection when the app shuts down
+atexit.register(lambda: asyncio.run(close_mcp_client()))
+
+"""
+    You are a medical report assistant that helps users understand and process medical reports.
+    
+    User question: {message}
+    
+    Provide a helpful, concise response. If you don't know the answer, say so honestly.
+    If the user is asking about how to use the system, explain that they can:
+    1. Upload medical reports for processing (detailed analysis)
+    2. Upload medical reports for summarization (quick overview)
+    3. Ask questions about medical terminology or report interpretation
+    4. View past results by clicking on the 'View Results' link
+    """
+    
+    response = CHAT_MODEL.generate_content(prompt)
+    return response.text, "", None
+
+# Routes
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        # Debug
+        print(f"Login attempt for email: {email}")
+        
+        user = User.get_by_email(email)
+        if user:
+            print(f"Found user: {user.username}, ID: {user.id}")
+            print(f"User chat history: {user.chat_history}")
+            
+        if user and user.verify_password(password):
+            login_user(user)
+            print(f"Logged in user: {current_user.username}, ID: {current_user.id}")
+            print(f"Current user chat history: {current_user.chat_history}")
+            
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('index'))
+        
+        flash('Invalid email or password')
+    return render_template('login.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if password != confirm_password:
+            flash('Passwords do not match')
+            return render_template('signup.html')
+        
+        user, error = User.create(username, email, password)
+        if error:
+            flash(error)
+            return render_template('signup.html')
+        
+        login_user(user)
+        return redirect(url_for('index'))
+    
+    return render_template('signup.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+@app.route('/')
+@login_required
+def index():
+    # Get current time for the welcome message
+    now = datetime.now().strftime('%H:%M')
+    return render_template('chat_daisy.html', now=now, current_user=current_user)
+
+@app.route('/results')
+@login_required
+def view_results():
+    # Get results from database for the current user
+    results = ResultManager.get_results_by_user(current_user.id)
+    
+    # Format results for display
+    formatted_results = []
+    for result in results:
+        formatted_results.append({
+            'id': result['id'],
+            'filename': result['filename'],
+            'type': result['processing_type'],
+            'created': result['created_at'].strftime('%Y-%m-%d %H:%M:%S') if isinstance(result['created_at'], datetime) else result['created_at'],
+            'original_filename': result['original_filename']
+        })
+    
+    return render_template('results_daisy.html', results=formatted_results)
+
+@app.route('/view_result/<filename>')
+@login_required
+def view_result(filename):
+    # Get result from database
+    result_obj = ResultManager.get_result_by_filename(filename)
+    
+    if not result_obj:
+        # Try fallback to file system for backward compatibility
+        file_path = os.path.join(RESULTS_FOLDER, filename)
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                result_data = json.load(f)
+                return render_template('view_result.html', result=result_data, filename=filename)
+        
+        flash("Result not found")
+        return redirect(url_for('view_results'))
+    
+    # Use the result data from the database
+    result_data = result_obj['result_data']
+    
+    # For now, use the old template - we'll create a DaisyUI version later if needed
+    return render_template('view_result.html', result=result_data, filename=filename, result_id=result_obj['id'])
+
+@app.route('/download_result/<filename>')
+def download_result(filename):
+    return send_from_directory(RESULTS_FOLDER, filename, as_attachment=True)
+
+@app.route('/delete_result/<filename>', methods=['POST'])
+@login_required
+def delete_result(filename):
+    """Delete a result from the database"""
+    # First try to get the result from the database to get its ID
+    result_obj = ResultManager.get_result_by_filename(filename)
+    
+    if result_obj:
+        # Delete from database
+        success = ResultManager.delete_result(result_obj['id'], current_user.id)
+        if success:
+            # Also try to delete the file for backward compatibility
+            try:
+                file_path = os.path.join(RESULTS_FOLDER, filename)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+            except Exception:
+                # Ignore file system errors as the database is the source of truth
+                pass
+            return jsonify({"success": True}), 200
+        else:
+            return jsonify({"error": "Failed to delete result"}), 500
+    else:
+        # Try fallback to file system
+        file_path = os.path.join(RESULTS_FOLDER, filename)
+        if not os.path.exists(file_path):
+            return jsonify({"error": "Result not found"}), 404
+        
+        try:
+            os.remove(file_path)
+            return jsonify({"success": True}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+@app.route('/chat', methods=['POST'])
+@login_required
+def chat():
+    message = request.form.get('message', '')
+    chat_id = request.form.get('chat_id', '')
+    
+    # If no chat_id provided, create a new one
+    if not chat_id:
+        chat_id = str(uuid.uuid4())
+        # Create a title from the first message
+        title = message[:30] + "..." if len(message) > 30 else message
+        # Add to user's chat history
+        current_user.add_chat(chat_id, title, datetime.now().strftime("%Y-%m-%d %H:%M"))
+    
+    # Store the user message in chat history
+    current_user.add_message_to_chat(chat_id, message, is_user=True)
+    
+    # Check if a file was uploaded
+    has_file = False
+    file_path = None
+    
+    if 'file' in request.files and request.files['file'].filename:
+        file = request.files['file']
+        
+        if file and allowed_file(file.filename):
+            has_file = True
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+    
+    # Process the request
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
+    try:
+        if has_file:
+            # Use Gemini to determine which tool to call
+            tool_name, confidence, tool_args = loop.run_until_complete(get_tool_with_gemini(message, has_file))
+            print(f"Gemini selected tool: {tool_name} with confidence {confidence}")
+            
+            # Process the file with the selected tool
+            response, tool_result, json_filename = loop.run_until_complete(
+                process_file(file_path, tool_name, tool_args, chat_id)
+            )
+        else:
+            # Handle general questions
+            response, tool_result, json_filename = loop.run_until_complete(answer_general_question(message))
+            tool_name = "general_question"
+            confidence = 0.8
+    except Exception as e:
+        response = f"Sorry, there was an error processing your request: {str(e)}"
+        tool_result = ""
+        json_filename = None
+        tool_name = "error"
+        confidence = 0
+    finally:
+        loop.close()
+    
+    # Prepare metadata for the assistant response
+    metadata = {
+        "tool_used": tool_name,
+        "confidence": confidence
+    }
+    
+    # Add result file info to metadata if available
+    if json_filename:
+        metadata["result_file"] = json_filename
+        metadata["view_url"] = f"/view_result/{json_filename}"
+    
+    # Store the assistant response in chat history with metadata
+    current_user.add_message_to_chat(chat_id, response, is_user=False, metadata=metadata)
+    
+    result_data = {
+        "response": response,
+        "tool_used": tool_name,
+        "confidence": confidence,
+        "chat_id": chat_id
+    }
+    
+    # Add result file info if available
+    if json_filename:
+        result_data["result_file"] = json_filename
+        result_data["view_url"] = f"/view_result/{json_filename}"
+    
+    return jsonify(result_data)
+
+@app.route('/view_chat/<chat_id>')
+@login_required
+def view_chat(chat_id):
+    # Find the chat in user's history
+    chat = None
+    for item in current_user.chat_history:
+        if item['id'] == chat_id:
+            chat = item
+            break
+    
+    if not chat:
+        flash("Chat not found")
+        return redirect(url_for('index'))
+    
+    # Get chat messages
+    messages = current_user.get_chat_messages(chat_id)
+    
+    # Get current time for the welcome message
+    now = datetime.now().strftime('%H:%M')
+    
+    return render_template('chat_daisy.html', 
+                           now=now, 
+                           current_user=current_user, 
+                           chat_id=chat_id, 
+                           chat_title=chat['title'],
+                           messages=messages)
+
+@app.route('/debug/chat_history')
+@login_required
+def debug_chat_history():
+    return jsonify({
+        'username': current_user.username,
+        'user_id': current_user.id,
+        'chat_history': current_user.chat_history
+    })
+
+@app.route('/delete_chat/<chat_id>', methods=['POST'])
+@login_required
+def delete_chat(chat_id):
+    success = current_user.delete_chat(chat_id)
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return jsonify({
+            'success': success,
+            'message': 'Chat deleted successfully' if success else 'Failed to delete chat'
+        })
+    else:
+        # Fallback for non-AJAX requests
+        if success:
+            flash('Chat deleted successfully', 'success')
+        else:
+            flash('Failed to delete chat', 'error')
+        return redirect(url_for('index'))
+
+# Register functions to close the client when the app shuts down
+@app.teardown_appcontext
+def shutdown_client(exception=None):
+    # We need to run this in a new event loop since teardown_appcontext is synchronous
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        loop.run_until_complete(close_mcp_client())
+    finally:
+        loop.close()
+
+# Also register with atexit to ensure cleanup happens
+atexit.register(lambda: asyncio.run(close_mcp_client()))
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5001)  # Note: Using port 5001 to avoid conflict with web_app.py

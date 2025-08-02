@@ -1,0 +1,32 @@
+{
+    "confidence": 0.5,
+    "enhanced_text": {
+        "Patient Name": "Prakash babu",
+        "hospital_lab_location": "Vijayanagar, Bangalore",
+        "hospital_lab_name": "Centre for Digestive and Liver Diseases",
+        "parameters": [
+            {
+                "Imaging Comment": "Rectum & Sigmoid Colon :: Normal vascular pattern. No polyp, ulcer, tumor or stricture. Descending & Transverse Colon : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Ascending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Normal cecum, ileocecal opening and appendicular opening.",
+                "Impression": "NORMAL MUCOSAL STUDY"
+            }
+        ],
+        "test": "Colonoscopy report"
+    },
+    "extracted_text": "Dr. SATYAPRAKASH'S\n7\nCentre for Digestive and Liver Diseases\nDr. B. S. SatyaPrakash M.D., D.M., (PGI) FACG ( USA )\nInternational Member: American Society of GI Endoscopy & European Society of GI Endoscopy\nPatient Name\n: Prakash babu\nPatient Id\n: 15347\nDone By\n: Dr BS Satyaprakash\nClinical Diagnosis\nAge/Sex\n: 67/Male\nDate\nRef. By\n: 17-Sep-2018\n: Self\nFinal Diagnosis\n: Normal mucosal study\n: Post op Ca Colon\nCOLONOSCOPY REPORT\nRectum & Sigmoid Colon ::\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nDescending & Transverse Colon :\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nAscending Colon & Cecum :\nNormal vascular pattern.\nNo polyp, ulcer, tumor or stricture.\nNormal cecum, ileocecal opening and appendicular opening.\nFinal Diagnosis :\nNORMAL MUCOSAL STUDY.\nSmakars\nment\n#229, 14th Cross, M.C. Layout, Vijayanagar, Bangalore - 560 040.\nPh: 9880017337, 23143216, 32986770, Fax: 23395284, www. drsatyaprakash.com, e-mail: satyaprakashbs@gmail.com\nSE+4 CE\nLISE",
+    "extraction_method": "gemini_2.0_flash",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\batch\\Endoscopy(Colonoscopy) (3).pdf",
+    "file_processed": "Endoscopy(Colonoscopy) (3).pdf",
+    "keywords_identified": [
+        "colonoscopy",
+        "colon",
+        "rectum",
+        "cecum",
+        "mucosal study"
+    ],
+    "processing_time": "15.64 seconds",
+    "reason": "",
+    "report_type": "COLONOSCOPY",
+    "success": true,
+    "timestamp": "2025-06-01 18:09:55",
+    "verified_text": "{\n  \"test\": \"Colonoscopy report\",\n  \"hospital_lab_name\": \"Centre for Digestive and Liver Diseases\",\n  \"hospital_lab_location\": \"Vijayanagar, Bangalore\",\n  \"Patient Name\": \"Prakash babu\",\n  \"parameters\": [\n    {\n      \"Impression\": \"NORMAL MUCOSAL STUDY\",\n      \"Imaging Comment\": \"Rectum & Sigmoid Colon :: Normal vascular pattern. No polyp, ulcer, tumor or stricture. Descending & Transverse Colon : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Ascending Colon & Cecum : Normal vascular pattern. No polyp, ulcer, tumor or stricture. Normal cecum, ileocecal opening and appendicular opening.\"\n    }\n  ]\n}"
+}

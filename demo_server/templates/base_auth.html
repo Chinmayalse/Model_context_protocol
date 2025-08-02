@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MCP - Medical Report Processing{% endblock %}</title>
+    
+    <!-- DaisyUI and Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    animation: {
+                        'fadeIn': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-base-200">
+    <!-- Simple navbar with logo only -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-center">
+            <a href="{{ url_for('index') }}" class="btn btn-ghost normal-case text-xl">
+                <div class="avatar">
+                    <div class="w-8 rounded-full">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                    </div>
+                </div>
+                <span class="ml-2">Medical Report Processing</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="container mx-auto px-2 sm:px-4 py-4 max-w-5xl">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-error mb-4">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-auto">
+        <div>
+            <p>MCP &copy; 2025 - AI-powered Medical Report Processing</p>
+        </div>
+    </footer>
+    
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme handling
+            const html = document.querySelector('html');
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            html.setAttribute('data-theme', savedTheme);
+        });
+        
+        // Toast function
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            toast.className = `alert alert-${type} animate-fadeIn shadow-lg mb-2 fixed top-4 right-4 z-50 max-w-sm`;
+            toast.innerHTML = `
+                <div class="flex justify-between w-full">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button class="btn btn-ghost btn-xs" onclick="this.parentElement.parentElement.remove()">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

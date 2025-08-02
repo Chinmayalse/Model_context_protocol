@@ -1,0 +1,2312 @@
+2025-05-31 20:00:27,492 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name, user_id, tool_args=0, batch_id=1, chat_id=2):
+    return 1
+
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-05-31 20:00:27,513 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, user_id, tool_args=0, batch_id=1, chat_id=2):
+    return 1
+
+2025-05-31 20:00:27,517 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-05-31 20:00:27,518 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-05-31 20:00:27,519 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-05-31 20:00:27,520 - celery.utils.functional - DEBUG - 
+def cleanup_old_tasks(days_to_keep=0):
+    return 1
+
+2025-05-31 20:00:27,520 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-05-31 20:00:27,521 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-05-31 20:00:27,791 - celery.worker.consumer.connection - INFO - Connected to redis://localhost:6379/0
+2025-05-31 20:00:27,798 - celery.worker.consumer.mingle - INFO - mingle: searching for neighbors
+2025-05-31 20:00:28,827 - celery.worker.consumer.mingle - INFO - mingle: all alone
+2025-05-31 20:00:28,854 - celery.apps.worker - INFO - celery@LAPTOP-6VBR4810 ready.
+2025-05-31 20:13:01,387 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 20:14:04,462 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 20:14:04,555 - engineio.server - INFO - Server initialized for threading.
+2025-05-31 20:14:04,574 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name, user_id, tool_args=0, batch_id=1, chat_id=2):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, user_id, tool_args=0, batch_id=1, chat_id=2):
+    return 1
+
+2025-05-31 20:14:04,584 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-05-31 20:14:04,588 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-05-31 20:14:04,589 - celery.utils.functional - DEBUG - 
+def cleanup_old_tasks(days_to_keep=0):
+    return 1
+
+2025-05-31 20:14:04,589 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-05-31 20:14:04,591 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-05-31 20:14:04,591 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-05-31 20:23:00,304 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 20:23:00,365 - engineio.server - INFO - Server initialized for threading.
+2025-05-31 20:23:00,394 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.108:5000
+2025-05-31 20:23:00,394 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-31 20:23:00,394 - werkzeug - INFO -  * Restarting with stat
+2025-05-31 20:23:02,631 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-05-31 20:23:02,782 - engineio.server - INFO - Server initialized for threading.
+2025-05-31 20:23:02,790 - werkzeug - WARNING -  * Debugger is active!
+2025-05-31 20:23:03,159 - werkzeug - INFO -  * Debugger PIN: 138-711-388
+2025-05-31 20:23:03,246 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:03] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-31 20:23:03,276 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:03] "GET /login HTTP/1.1" 200 -
+2025-05-31 20:23:12,846 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:12] "POST /login HTTP/1.1" 200 -
+2025-05-31 20:23:16,728 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:16] "GET /signup HTTP/1.1" 200 -
+2025-05-31 20:23:28,997 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:28] "POST /signup HTTP/1.1" 200 -
+2025-05-31 20:23:33,353 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:33] "GET /login HTTP/1.1" 200 -
+2025-05-31 20:23:41,290 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:41] "POST /login HTTP/1.1" 200 -
+2025-05-31 20:23:53,861 - werkzeug - INFO - 127.0.0.1 - - [31/May/2025 20:23:53] "POST /login HTTP/1.1" 200 -
+2025-05-31 20:49:59,594 - werkzeug - INFO -  * Detected change in 'C:\\Users\\chinmay alse\\Desktop\\MCP_1\\demo_server\\tasks.py', reloading
+2025-05-31 20:50:00,715 - werkzeug - INFO -  * Restarting with stat
+2025-05-31 22:31:59,166 - celery.worker.consumer.consumer - WARNING - consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\connection.py", line 644, in read_response
+    response = self._parser.read_response(disable_decoding=disable_decoding)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\_parsers\resp2.py", line 15, in read_response
+    result = self._read_response(disable_decoding=disable_decoding)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\_parsers\resp2.py", line 25, in _read_response
+    raw = self._buffer.readline()
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\_parsers\socket.py", line 115, in readline
+    self._read_from_socket()
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\_parsers\socket.py", line 65, in _read_from_socket
+    data = self._sock.recv(socket_read_size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 341, in start
+    blueprint.start(self)
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\bootsteps.py", line 116, in start
+    step.start(parent)
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\worker\consumer\consumer.py", line 772, in start
+    c.loop(*c.loop_args())
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\worker\loops.py", line 143, in synloop
+    _loop_cycle()
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\worker\loops.py", line 132, in _loop_cycle
+    connection.drain_events(timeout=2.0)
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\connection.py", line 341, in drain_events
+    return self.transport.drain_events(self.connection, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\transport\virtual\base.py", line 997, in drain_events
+    get(self._deliver, timeout=timeout)
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\transport\redis.py", line 591, in get
+    ret = self.handle_event(fileno, event)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\transport\redis.py", line 573, in handle_event
+    return self.on_readable(fileno), self
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\transport\redis.py", line 569, in on_readable
+    chan.handlers[type]()
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\kombu\transport\redis.py", line 967, in _brpop_read
+    dest__item = self.client.parse_response(self.client.connection,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\client.py", line 653, in parse_response
+    response = connection.read_response()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\redis\connection.py", line 652, in read_response
+    raise ConnectionError(f"Error while reading from {host_error} : {e.args}")
+redis.exceptions.ConnectionError: Error while reading from localhost:6379 : (10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2025-05-31 22:32:03,790 - py.warnings - WARNING - C:\Users\chinmay alse\Desktop\MCP\demo_server\venv\Lib\site-packages\celery\worker\consumer\consumer.py:392: CPendingDeprecationWarning: 
+In Celery 5.1 we introduced an optional breaking change which
+on connection loss cancels all currently executed tasks with late acknowledgement enabled.
+These tasks cannot be acknowledged as the connection is gone, and the tasks are automatically redelivered
+back to the queue. You can enable this behavior using the worker_cancel_long_running_tasks_on_connection_loss
+setting. In Celery 5.1 it is set to False by default. The setting will be set to True by default in Celery 6.0.
+
+  warnings.warn(CANCEL_TASKS_BY_DEFAULT, CPendingDeprecationWarning)
+
+2025-05-31 22:36:54,536 - mcp.server.lowlevel.server - DEBUG - Initializing server 'Medical Report Processing'
+2025-05-31 22:36:54,539 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2025-05-31 22:36:54,539 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2025-05-31 22:36:54,540 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourcesRequest
+2025-05-31 22:36:54,540 - mcp.server.lowlevel.server - DEBUG - Registering handler for ReadResourceRequest
+2025-05-31 22:36:54,541 - mcp.server.lowlevel.server - DEBUG - Registering handler for PromptListRequest
+2025-05-31 22:36:54,541 - mcp.server.lowlevel.server - DEBUG - Registering handler for GetPromptRequest
+2025-05-31 22:36:54,541 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-05-31 22:37:33,739 - mcp.server.lowlevel.server - DEBUG - Initializing server 'Medical Report Processing'
+2025-05-31 22:37:33,740 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2025-05-31 22:37:33,740 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2025-05-31 22:37:33,740 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourcesRequest
+2025-05-31 22:37:33,740 - mcp.server.lowlevel.server - DEBUG - Registering handler for ReadResourceRequest
+2025-05-31 22:37:33,740 - mcp.server.lowlevel.server - DEBUG - Registering handler for PromptListRequest
+2025-05-31 22:37:33,743 - mcp.server.lowlevel.server - DEBUG - Registering handler for GetPromptRequest
+2025-05-31 22:37:33,744 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-06-01 07:19:14,529 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 07:19:14,530 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 07:19:14,536 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 07:19:14,536 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 07:19:14,536 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 07:19:14,540 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 07:19:14,541 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 07:19:14,541 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 07:19:14,541 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 07:53:55,189 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 07:53:55,190 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 07:53:55,194 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 07:53:55,195 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 07:53:55,195 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 07:53:55,199 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 07:53:55,199 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 07:53:55,200 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 07:53:55,200 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 07:53:55,201 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 07:53:55,201 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:06:04,555 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:06:04,555 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:06:04,555 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:06:04,557 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:06:04,557 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:06:04,558 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:06:04,558 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:06:04,558 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:06:04,559 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:06:04,561 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:06:04,562 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:06:04,562 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:06:04,563 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:06:04,564 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:06:04,564 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:06:04,565 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:06:04,566 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:09:46,072 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:09:46,077 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:09:46,077 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:09:46,079 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:09:46,079 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:09:46,079 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:09:46,079 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:09:46,082 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:09:46,082 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:09:46,083 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:09:46,083 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:09:46,084 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:16:05,655 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:16:05,657 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:16:05,657 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:16:05,658 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:16:05,659 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:16:05,659 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:16:05,659 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:16:05,661 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:16:05,664 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:16:05,664 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:16:05,664 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:16:05,665 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:16:05,665 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:16:05,667 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:16:05,667 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:16:05,668 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:16:05,669 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:16:28,344 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:16:28,345 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:16:28,346 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:16:28,346 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:16:28,347 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:16:28,348 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:16:28,349 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:16:28,350 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:16:28,352 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:16:28,353 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:16:28,353 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:16:28,354 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:16:28,356 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:16:28,356 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:16:28,358 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:16:28,358 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:16:28,361 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:19:16,747 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:19:16,749 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:19:16,749 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:19:16,750 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:19:16,751 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:19:16,752 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:19:16,752 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:19:16,753 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:19:16,754 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:19:16,755 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:19:16,757 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:19:16,757 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:19:16,759 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:19:16,760 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:19:16,760 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:19:16,761 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:19:16,761 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:36:42,115 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:36:42,117 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:36:42,118 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:36:42,118 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:36:42,119 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:36:42,119 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:36:42,120 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:36:42,120 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:36:42,122 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:36:42,123 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:36:42,124 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:36:42,124 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:36:42,125 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:36:42,125 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:36:42,125 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:36:42,127 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:36:42,127 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:43:29,014 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:43:29,014 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:43:29,019 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:43:29,019 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:43:29,021 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:43:29,022 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:43:29,022 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:43:29,022 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:43:29,022 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:43:29,022 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:43:29,027 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:43:29,027 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:43:29,027 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:43:29,029 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:43:29,030 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:43:29,030 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:43:29,031 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 08:44:18,295 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:44:18,299 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 08:44:18,299 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 08:44:18,300 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 08:44:18,305 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 08:44:18,305 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 08:44:18,305 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 08:44:18,307 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 08:44:18,308 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 08:44:18,309 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 09:24:54,464 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 09:24:54,464 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 09:24:54,465 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 09:24:54,467 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 09:24:54,470 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 09:24:54,470 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 09:24:54,472 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 09:24:54,472 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 09:24:54,472 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 09:24:54,474 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:24:54,475 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 09:24:54,475 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 09:24:54,475 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:24:54,477 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 09:24:54,477 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 09:24:54,477 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 09:24:54,479 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 09:35:24,939 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 09:35:24,941 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 09:35:24,941 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 09:35:24,941 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 09:35:24,941 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 09:35:24,941 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 09:35:24,945 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 09:35:24,945 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 09:35:24,945 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 09:35:24,949 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:35:24,949 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 09:35:24,951 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 09:35:24,952 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:35:24,952 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 09:35:24,954 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 09:35:24,956 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 09:35:24,957 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 09:43:08,229 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 09:43:08,229 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 09:43:08,230 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 09:43:08,231 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 09:43:08,231 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 09:43:08,231 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 09:43:08,232 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 09:43:08,233 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 09:43:08,234 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 09:43:08,235 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:43:08,236 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 09:43:08,236 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 09:43:08,236 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 09:43:08,237 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 09:43:08,238 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 09:43:08,239 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 09:43:08,239 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 10:59:27,841 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 10:59:27,841 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 10:59:27,844 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 10:59:27,844 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 10:59:27,846 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 10:59:27,846 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 10:59:27,847 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 10:59:27,847 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 10:59:27,850 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 10:59:27,850 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 10:59:27,850 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 10:59:27,852 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 10:59:27,852 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 10:59:27,854 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 10:59:27,855 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 10:59:27,856 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 10:59:27,857 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 11:04:54,512 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 11:04:54,520 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 11:04:54,521 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 11:04:54,522 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 11:19:50,663 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 11:19:50,664 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 11:19:50,665 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 11:19:50,665 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 11:19:50,665 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 11:19:50,666 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 11:19:50,666 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 11:19:50,667 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 11:19:50,667 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 11:19:50,668 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 11:19:50,668 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 11:19:50,669 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 11:19:50,670 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 11:19:50,670 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 11:19:50,671 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 11:19:50,671 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 11:19:50,672 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 11:23:41,462 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 11:23:41,464 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 11:23:41,464 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 11:23:41,470 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 11:23:41,470 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 11:23:41,470 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 11:23:41,474 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 11:23:41,475 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 11:23:41,479 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 11:23:41,480 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 11:23:41,480 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 11:23:41,482 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 11:23:41,484 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 11:23:41,486 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 11:23:41,486 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 11:23:41,486 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 11:23:41,486 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 14:31:15,327 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 14:31:15,327 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 14:31:15,332 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 14:31:15,332 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 14:31:15,332 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 14:31:15,334 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 14:31:15,335 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 14:31:15,341 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 14:31:15,342 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 14:31:15,343 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 14:31:15,344 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 14:31:15,345 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 14:39:25,633 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 14:39:25,634 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 14:39:25,634 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 14:39:25,634 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 14:39:25,634 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 14:39:25,636 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 14:39:25,645 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 14:39:25,645 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 14:39:25,647 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 14:39:25,648 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 14:39:25,650 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 15:02:58,847 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 15:02:58,847 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 15:02:58,849 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 15:02:58,849 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 15:02:58,850 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 15:02:58,850 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 15:02:58,850 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 15:02:58,850 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 15:02:58,855 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 15:02:58,855 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 15:02:58,855 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 15:02:58,855 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 15:02:58,859 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 15:02:58,859 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 15:02:58,859 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 15:02:58,862 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 15:02:58,863 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 16:27:32,834 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 16:27:32,845 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 16:27:32,846 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 16:27:32,846 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 16:27:32,847 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 16:27:32,847 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 16:27:32,848 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 17:26:39,493 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 17:26:39,493 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 17:26:39,493 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 17:26:39,497 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 17:26:39,497 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 17:26:39,497 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 17:26:39,500 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 17:26:39,500 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 17:26:39,500 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 17:26:39,504 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 17:26:39,505 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 17:26:39,505 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 17:26:39,506 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 17:26:39,508 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 17:26:39,508 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 17:26:39,509 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 17:26:39,510 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 17:32:42,655 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 17:32:42,661 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 17:32:42,663 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 17:32:42,664 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 17:32:42,665 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 17:32:42,667 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 17:32:42,668 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 17:32:42,669 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 17:32:42,669 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 17:32:42,670 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 17:32:42,671 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 17:35:26,884 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 17:35:26,897 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 17:35:26,897 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 17:35:26,897 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 17:35:26,900 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 17:35:26,901 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 17:35:26,902 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 17:35:26,902 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 17:35:26,903 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 17:35:26,904 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 17:39:07,869 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 17:39:07,869 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 17:39:07,869 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 17:39:07,869 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 17:39:07,869 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 17:39:07,874 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 17:39:07,875 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 17:39:07,875 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 17:39:07,877 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 17:39:07,877 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 17:39:07,880 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 17:39:07,880 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 17:39:07,882 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 17:39:07,883 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 17:39:07,884 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 17:39:07,884 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 17:39:07,885 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 18:03:49,424 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 18:03:49,427 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 18:03:49,427 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 18:03:49,427 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 18:03:49,429 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 18:03:49,429 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 18:03:49,429 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 18:03:49,429 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 18:03:49,434 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 18:03:49,434 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 18:03:49,434 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 18:03:49,437 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 18:03:49,438 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 18:03:49,439 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 18:03:49,441 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 18:03:49,441 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 18:03:49,442 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 18:08:48,684 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 18:08:48,696 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 18:08:48,697 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 18:08:48,697 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 18:08:48,698 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 18:08:48,700 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 18:08:48,700 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 18:08:48,701 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-01 18:17:23,254 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-01 18:17:23,254 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-01 18:17:23,254 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-01 18:17:23,254 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-01 18:17:23,261 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-01 18:17:23,262 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-01 18:17:23,264 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-01 18:17:23,264 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-01 18:17:23,267 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-01 18:17:23,268 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-01 18:17:23,270 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-01 18:17:23,272 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-01 18:17:23,274 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-01 18:17:23,274 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-01 18:17:23,277 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-01 18:17:23,282 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-01 18:17:23,284 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-02 08:12:29,905 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-02 08:12:29,905 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-02 08:12:29,905 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-02 08:12:29,908 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-02 08:12:29,909 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-02 08:12:29,909 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-02 08:12:29,911 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-02 08:12:29,911 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-02 08:12:29,911 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-02 08:12:29,911 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-02 08:12:29,911 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-02 08:12:29,914 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-02 08:12:29,916 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-02 08:12:29,917 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-02 08:12:29,917 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-02 08:12:29,920 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-02 08:12:29,926 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-02 08:30:53,754 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-02 08:30:53,756 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-02 08:30:53,757 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-02 08:30:53,758 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-02 08:30:53,759 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-02 08:30:53,760 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-02 08:30:53,761 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-02 08:30:53,761 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-02 08:30:53,761 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-02 08:30:53,764 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-02 08:30:53,766 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-02 08:30:53,767 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-02 08:30:53,767 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-02 08:30:53,767 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-02 08:30:53,769 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-02 08:30:53,769 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-02 08:30:53,769 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+
+2025-06-02 09:48:03,205 - celery.utils.functional - DEBUG - 
+def accumulate(self, *args, **kwargs):
+    return 1
+
+2025-06-02 09:48:03,205 - celery.utils.functional - DEBUG - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2025-06-02 09:48:03,205 - celery.utils.functional - DEBUG - 
+def update_batch_after_process(self, file_result, batch_id, user_id, file_path):
+    return 1
+
+2025-06-02 09:48:03,205 - celery.utils.functional - DEBUG - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2025-06-02 09:48:03,208 - celery.utils.functional - DEBUG - 
+def cleanup_expired_results(days=0):
+    return 1
+
+2025-06-02 09:48:03,209 - celery.utils.functional - DEBUG - 
+def process_batch_task(self, file_paths, tool_name, tool_args=0, user_id=1, chat_id=2):
+    return 1
+
+2025-06-02 09:48:03,210 - celery.utils.functional - DEBUG - 
+def xmap(task, it):
+    return 1
+
+2025-06-02 09:48:03,211 - celery.utils.functional - DEBUG - 
+def xstarmap(task, it):
+    return 1
+
+2025-06-02 09:48:03,211 - celery.utils.functional - DEBUG - 
+def process_file_task(self, file_path, tool_name=0, tool_args=1, user_id=2, chat_id=3, batch_id=4):
+    return 1
+
+2025-06-02 09:48:03,211 - celery.utils.functional - DEBUG - 
+def send_notification(self, user_id, message, notification_type=0, batch_id=1, result_id=2):
+    return 1
+
+2025-06-02 09:48:03,211 - celery.utils.functional - DEBUG - 
+def ping(self):
+    return 1
+
+2025-06-02 09:48:03,214 - celery.utils.functional - DEBUG - 
+def chunks(task, it, n):
+    return 1
+
+2025-06-02 09:48:03,215 - celery.utils.functional - DEBUG - 
+def backend_cleanup():
+    return 1
+
+2025-06-02 09:48:03,216 - celery.utils.functional - DEBUG - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2025-06-02 09:48:03,216 - celery.utils.functional - DEBUG - 
+def check_batch_status(self, batch_id, user_id=0):
+    return 1
+
+2025-06-02 09:48:03,217 - celery.utils.functional - DEBUG - 
+def process_directory_task(self, directory_path, tool_name=0, tool_args=1, user_id=2, chat_id=3):
+    return 1
+
+2025-06-02 09:48:03,220 - celery.utils.functional - DEBUG - 
+def chain(*args, **kwargs):
+    return 1
+

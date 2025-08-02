@@ -1,0 +1,9 @@
+{
+    "content": "This is a test result",
+    "metadata": {
+        "test": true,
+        "timestamp": "2025-06-01T11:09:00.834044"
+    },
+    "batch_id": "test_batch_123",
+    "status": "completed"
+}

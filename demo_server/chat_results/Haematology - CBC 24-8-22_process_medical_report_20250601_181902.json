@@ -1,0 +1,197 @@
+{
+    "status": "error",
+    "message": "Unknown error occurred",
+    "file_path": "C:\\Users\\chinmay alse\\Desktop\\batch\\Haematology - CBC 24-8-22.pdf",
+    "batch_id": "4774a5c6-c883-4772-8807-5d532723dadc",
+    "success": true,
+    "extracted_text": "Haematology Report\n(Relevarit estimations were carried out by Mythic 22 Automated Haematology Analyzer & checked manually)\nParameter Name Results\nHemoglobin (Hb) (89%)14.2 gm/dl M:13-18 gm/dl, F:11.5-16.5 gm/dl\nChild:10-13 gm/dl.\nESR(Westergreen) 5.2 mm/1st hr Infant: (One year)-10 gm/dl\nTotal WBC Count(TC) 5,600 /cumm Male: 0-10, F:0-20 mm/1st hr.\nAdult: 4000-11000/cumm\nChildren: 5,000-15,000/cumm\nInfant(One Year):\n6,000-18,000/cumm\nDifferential WBC Count (DC)\nNeutrophils 47 % Child: 25-66 %, Adult: 40-75 %\nLymphocytes 44 % Child: 52-62 %, Adult: 20-50 %\nMonocytes 08 % Child: 03-07 %, Adult: 02-10 %\nEosinophils 01 % Child: 01-03 %, Adult: 01-06 %\nBasophils 00 % Adult: 00-01 %\nTotal Cir. Eosinophils 56 /cumm 50-400/cumm\nTotal RBC Count 4.89 m/ul M: 4.5-6.5, F:3.8-5.8 m/ul\nHCT/PCV 42.6 % M: 40-54%, F:37-47%\nMCV 87.1 fL 76-94 fL\nMCH 29.0 pg 27-32 pg\nMCHC 33.3 g/dl 29-34 g/dl\nRDW 15.1 % 11-16 %\nPDW 13.0 fL 35-56 fL\nTotal Platelete Count (PC) 2,13,000 /cumm 150,000-450,000/cumm\nMPV 8.0 fL 7.0-11.0 fL\nPCT 0.170 % 0.200-0.500%\nBleeding Time(BT) Min 01-07 Min\nCloting Time(CT) Min 03-11 Min",
+    "extraction_method": "gemini_2.0_flash",
+    "report_type": "CBC",
+    "confidence": 0.5,
+    "keywords_identified": [
+        "CBC",
+        "Complete Blood Count",
+        "Hemoglobin",
+        "Total WBC Count",
+        "Neutrophils",
+        "Lymphocytes",
+        "Monocytes",
+        "Eosinophils",
+        "Basophils",
+        "Total RBC Count",
+        "HCT/PCV",
+        "MCV",
+        "MCH",
+        "MCHC",
+        "RDW",
+        "PDW",
+        "Total Platelete Count",
+        "MPV",
+        "PCT"
+    ],
+    "reason": "",
+    "enhanced_text": {
+        "test": "Complete Blood Count (CBC)",
+        "hospital_lab_name": "NA",
+        "hospital_lab_location": "NA",
+        "reported_date": "NA",
+        "Patient Name": "NA",
+        "parameters": [
+            {
+                "parameter": "Hemoglobin",
+                "sub_parameter": "NA",
+                "value": 14.2,
+                "units": "g/dl"
+            },
+            {
+                "parameter": "Total WBC/leukocyte count",
+                "sub_parameter": "NA",
+                "value": 5600,
+                "units": "/Cumm"
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Neutrophils",
+                "value": 47,
+                "units": "%"
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Lymphocyte",
+                "value": 44,
+                "units": "%"
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Monocyte",
+                "value": 8,
+                "units": "%"
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Eosinophil",
+                "value": 1,
+                "units": "%"
+            },
+            {
+                "parameter": "WBC/Leukocyte differential count",
+                "sub_parameter": "Basophil",
+                "value": 0,
+                "units": "%"
+            },
+            {
+                "parameter": "Total RBC count",
+                "sub_parameter": "NA",
+                "value": 4.89,
+                "units": "mil/μL"
+            },
+            {
+                "parameter": "Hematocrit/PCV",
+                "sub_parameter": "NA",
+                "value": 42.6,
+                "units": "%"
+            },
+            {
+                "parameter": "RBC indices",
+                "sub_parameter": "MCV",
+                "value": 87.1,
+                "units": "fl"
+            },
+            {
+                "parameter": "RBC indices",
+                "sub_parameter": "MCH",
+                "value": 29.0,
+                "units": "pg"
+            },
+            {
+                "parameter": "RBC indices",
+                "sub_parameter": "MCHC",
+                "value": 33.3,
+                "units": "g/dl"
+            },
+            {
+                "parameter": "RBC indices",
+                "sub_parameter": "RDW",
+                "value": 15.1,
+                "units": "%"
+            },
+            {
+                "parameter": "Platelet count",
+                "sub_parameter": "NA",
+                "value": 213000,
+                "units": "/Cumm"
+            }
+        ]
+    },
+    "verified_text": "{\n  \"test\": \"Complete Blood Count (CBC)\",\n  \"hospital_lab_name\": \"NA\",\n  \"hospital_lab_location\": \"NA\",\n  \"reported_date\": \"NA\",\n  \"Patient Name\": \"NA\",\n  \"parameters\": [\n    {\n      \"parameter\": \"Hemoglobin\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 14.2,\n      \"units\": \"g dl\"\n    },\n    {\n      \"parameter\": \"Total WBC leukocyte count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 5600,\n      \"units\": \"Cumm\"\n    },\n    {\n      \"parameter\": \"WBC Leukocyte differential count\",\n      \"sub_parameter\": \"Neutrophils\",\n      \"value\": 47,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC Leukocyte differential count\",\n      \"sub_parameter\": \"Lymphocyte\",\n      \"value\": 44,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC Leukocyte differential count\",\n      \"sub_parameter\": \"Monocyte\",\n      \"value\": 8,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC Leukocyte differential count\",\n      \"sub_parameter\": \"Eosinophil\",\n      \"value\": 1,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"WBC Leukocyte differential count\",\n      \"sub_parameter\": \"Basophil\",\n      \"value\": 0,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"Total RBC count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 4.89,\n      \"units\": \"mil \\u03bcL\"\n    },\n    {\n      \"parameter\": \"Hematocrit PCV\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 42.6,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"RBC indices\",\n      \"sub_parameter\": \"MCV\",\n      \"value\": 87.1,\n      \"units\": \"fl\"\n    },\n    {\n      \"parameter\": \"RBC indices\",\n      \"sub_parameter\": \"MCH\",\n      \"value\": 29.0,\n      \"units\": \"pg\"\n    },\n    {\n      \"parameter\": \"RBC indices\",\n      \"sub_parameter\": \"MCHC\",\n      \"value\": 33.3,\n      \"units\": \"g dl\"\n    },\n    {\n      \"parameter\": \"RBC indices\",\n      \"sub_parameter\": \"RDW\",\n      \"value\": 15.1,\n      \"units\": \"%\"\n    },\n    {\n      \"parameter\": \"Platelet count\",\n      \"sub_parameter\": \"NA\",\n      \"value\": 213000,\n      \"units\": \"Cumm\"\n    }\n  ]\n}",
+    "processing_time": "19.90 seconds",
+    "file_processed": "Haematology - CBC 24-8-22.pdf",
+    "timestamp": "2025-06-01 18:19:02",
+    "json_saved_to": "results\\cbc\\Haematology - CBC 24-8-22_20250601_181902.json",
+    "context_messages": [
+        {
+            "level": "info",
+            "message": "Processing medical report: C:\\Users\\chinmay alse\\Desktop\\batch\\Haematology - CBC 24-8-22.pdf"
+        },
+        {
+            "level": "info",
+            "message": "Converting PDF to images..."
+        },
+        {
+            "level": "info",
+            "message": "Converted PDF to 1 images using enhanced method"
+        },
+        {
+            "level": "info",
+            "message": "Successfully converted PDF to 1 images"
+        },
+        {
+            "level": "info",
+            "message": "Extracting text using method: auto"
+        },
+        {
+            "level": "info",
+            "message": "Attempting extraction with Gemini 2.0 Flash..."
+        },
+        {
+            "level": "info",
+            "message": "Extraction with Gemini 2.0 Flash successful"
+        },
+        {
+            "level": "info",
+            "message": "Reading classification system prompt..."
+        },
+        {
+            "level": "info",
+            "message": "Classifying the medical report..."
+        },
+        {
+            "level": "info",
+            "message": "Classification with Gemini successful"
+        },
+        {
+            "level": "info",
+            "message": "Classification complete: CBC"
+        },
+        {
+            "level": "info",
+            "message": "Enhancing extracted text for report type: CBC"
+        },
+        {
+            "level": "info",
+            "message": "Text enhancement successful"
+        },
+        {
+            "level": "info",
+            "message": "Verification with Gemini complete"
+        },
+        {
+            "level": "info",
+            "message": "Medical report processing complete in 19.90 seconds"
+        },
+        {
+            "level": "info",
+            "message": "Removed temporary image: converted_images\\Haematology - CBC 24-8-22_page_1_converted.png"
+        }
+    ]
+}

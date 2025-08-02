@@ -1,0 +1,433 @@
+{% extends "base_daisy.html" %}
+
+{% block title %}{% if chat_title %}{{ chat_title }}{% else %}Medical Report Assistant{% endif %}{% endblock %}
+
+{% block content %}
+<div class="flex flex-col h-[calc(100vh-10rem)]">
+    <!-- Streamlined chat interface header -->
+    <div class="flex justify-between items-center mb-4">
+        <div>
+            <h2 class="text-2xl font-bold flex items-center gap-2">
+                <i class="fa-solid fa-robot text-primary"></i>
+                {% if chat_title %}
+                    {{ chat_title }}
+                {% else %}
+                    Medical Report Assistant
+                {% endif %}
+            </h2>
+        </div>
+        <a href="{{ url_for('view_results') }}" class="btn btn-accent btn-outline btn-sm">
+            <i class="fa-solid fa-folder-open mr-2"></i> View Results
+        </a>
+    </div>
+
+    <!-- Chat messages container -->
+    <div class="card flex-grow bg-base-100 shadow-xl mb-2 overflow-hidden">
+        <div class="card-body p-0 flex flex-col h-full">
+            <!-- Messages area with improved spacing -->
+            <div id="chat-messages" class="flex-grow overflow-y-auto p-3 space-y-3 w-full">
+                {% if messages and messages|length > 0 %}
+                    <!-- Display previous messages -->
+                    {% for message in messages %}
+                        {% if message.is_user %}
+                            <!-- User message -->
+                            <div class="flex justify-end w-full">
+                                <div class="chat chat-end max-w-[80%]">
+                                    <div class="chat-image avatar">
+                                        <div class="w-10 rounded-full bg-neutral text-neutral-content flex items-center justify-center">
+                                            <span>{{ current_user.username[0]|upper }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="chat-header">
+                                        {{ current_user.username }}
+                                        <time class="text-xs opacity-50">{{ message.timestamp }}</time>
+                                    </div>
+                                    <div class="chat-bubble chat-bubble-accent shadow-md">
+                                        {{ message.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- Assistant message -->
+                            <div class="w-full">
+                                <div class="flex items-start gap-2">
+                                    <div class="avatar">
+                                        <div class="w-10 rounded-full">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full">
+                                        <div class="flex items-center gap-2">
+                                            <span class="font-medium">Medical Assistant</span>
+                                            <time class="text-xs opacity-50">{{ message.timestamp }}</time>
+                                        </div>
+                                        <div class="bg-primary text-primary-content p-4 rounded-lg mt-1 shadow-md">
+                                            {{ message.content|safe }}
+                                        </div>
+                                        {% if message.metadata %}
+                                            <div class="flex flex-col mt-2">
+                                                <div class="flex items-center gap-2">
+                                                    {% if message.metadata.tool_used %}
+                                                        <div class="badge badge-primary badge-outline gap-1">
+                                                            <i class="fa-solid fa-wrench"></i> {{ message.metadata.tool_used }}
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                
+                                                {% if message.metadata.view_url %}
+                                                    <div class="mt-2 flex flex-col gap-2">
+                                                        <div class="flex items-center gap-2 text-success text-sm">
+                                                            <i class="fa-solid fa-check-circle"></i>
+                                                            <span>Report processed successfully</span>
+                                                        </div>
+                                                        <a href="{{ message.metadata.view_url }}" class="btn btn-sm btn-accent shadow-md hover:shadow-lg transition-all duration-300 gap-1 w-fit">
+                                                            <i class="fa-solid fa-eye"></i> VIEW RESULT
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <!-- Welcome message -->
+                    <div class="w-full">
+                        <div class="flex items-start gap-2">
+                            <div class="avatar">
+                                <div class="w-10 rounded-full">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium">Medical Assistant</span>
+                                    <time class="text-xs opacity-50">{{ now }}</time>
+                                </div>
+                                <div class="bg-primary text-primary-content p-4 rounded-lg mt-1 shadow-md">
+                                    <p>Welcome to the Medical Report Processing Assistant! I can help you with:</p>
+                                    <ul class="list-disc list-inside mt-2">
+                                        <li>Processing medical reports for detailed analysis</li>
+                                        <li>Summarizing reports for quick overviews</li>
+                                        <li>Answering questions about medical terminology</li>
+                                    </ul>
+                                    <p class="mt-2">Upload a report or type your question to get started.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Streamlined input area -->
+            <div class="border-t border-base-300 p-3 bg-base-200">
+                <!-- File selection display banner -->
+                <div id="file-banner" class="hidden w-full mb-3 bg-primary/10 rounded-lg p-2 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="avatar">
+                            <div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                                <i class="fa-solid fa-file-medical text-primary text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="font-medium" id="file-name-display">filename.pdf</div>
+                            <div class="text-xs opacity-70" id="file-size-display">0 KB</div>
+                        </div>
+                    </div>
+                    <button id="remove-file" class="btn btn-sm btn-ghost">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <form id="chat-form" class="flex items-center gap-2">
+                    <input type="hidden" id="chat-id" value="{{ chat_id or '' }}">
+                    <div class="form-control flex-grow relative">
+                        <input type="text" id="message-input" placeholder="Type your message here..." class="input input-bordered w-full pr-12" />
+                        <button type="submit" class="btn btn-circle btn-sm btn-primary absolute right-2 top-1/2 transform -translate-y-1/2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Direct file upload button -->
+                    <label for="file-input" class="btn btn-circle btn-sm btn-primary">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" id="file-input" class="hidden" accept=".pdf,.png,.jpg,.jpeg" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message-input');
+        const fileInput = document.getElementById('file-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        
+        let selectedFile = null;
+        
+        // Handle file selection
+        fileInput.addEventListener('change', function(e) {
+            selectedFile = e.target.files[0];
+            if (selectedFile) {
+                // Show file banner with details
+                const fileBanner = document.getElementById('file-banner');
+                const fileNameDisplay = document.getElementById('file-name-display');
+                const fileSizeDisplay = document.getElementById('file-size-display');
+                
+                // Update file information
+                fileNameDisplay.textContent = selectedFile.name;
+                fileSizeDisplay.textContent = `${(selectedFile.size / 1024).toFixed(1)} KB`;
+                fileBanner.classList.remove('hidden');
+                
+                // Show toast notification
+                showToast(`File selected: ${selectedFile.name}`, 'success');
+            }
+        });
+        
+        // Handle file removal
+        document.getElementById('remove-file').addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            selectedFile = null;
+            fileInput.value = '';
+            document.getElementById('file-banner').classList.add('hidden');
+            showToast('File removed', 'info');
+        });
+        
+        // Handle form submission
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const message = messageInput.value.trim();
+            if (!message && !selectedFile) {
+                showToast('Please enter a message or select a file', 'error');
+                return;
+            }
+            
+            // Add user message to chat
+            addUserMessage(message);
+            
+            // Clear input
+            messageInput.value = '';
+            
+            // Hide file banner after sending
+            document.getElementById('file-banner').classList.add('hidden');
+            
+            // We'll use the typing indicator instead of the loading overlay
+            // loadingOverlay.classList.remove('hidden');
+            
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('message', message);
+            if (selectedFile) {
+                formData.append('file', selectedFile);
+            }
+            
+            // Store file info for reference before clearing
+            const fileInfo = selectedFile ? {
+                name: selectedFile.name,
+                size: selectedFile.size
+            } : null;
+            
+            // Add chat ID to the form data if it exists
+            const chatId = document.getElementById('chat-id').value;
+            if (chatId) {
+                formData.append('chat_id', chatId);
+            }
+            
+            // Send request
+            fetch('/chat', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // No need to hide the loading overlay since we're not showing it
+                // loadingOverlay.classList.add('hidden');
+                
+                // Add assistant response
+                addAssistantMessage(data.response, data.tool_used, data.result_file ? {
+                    view_url: `/view_result/${data.result_file}`
+                } : null);
+                
+                // Save chat ID if provided
+                if (data.chat_id) {
+                    document.getElementById('chat-id').value = data.chat_id;
+                    
+                    // Update URL without reloading the page
+                    const newUrl = `/view_chat/${data.chat_id}`;
+                    window.history.pushState({path: newUrl}, '', newUrl);
+                    
+                    // Update page title if this is a new chat
+                    const currentChatId = document.getElementById('chat-id').value;
+                    if (!currentChatId || currentChatId === '') {
+                        const title = message.length > 30 ? message.substring(0, 30) + '...' : message;
+                        document.title = `Chat: ${title}`;
+                    }
+                }
+                
+                // Reset file input
+                fileInput.value = '';
+                selectedFile = null;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // No need to hide the loading overlay
+                // loadingOverlay.classList.add('hidden');
+                showToast('An error occurred. Please try again.', 'error');
+            });
+        });
+        
+        // Format date for messages
+        function formatDate() {
+            const now = new Date();
+            return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        // Add user message to chat
+        function addUserMessage(content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat chat-end animate-fadeIn';
+            
+            // Create message container
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'flex flex-col';
+            
+            // Add header
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'chat-header';
+            headerDiv.innerHTML = `
+                You
+                <time class="text-xs opacity-50">${formatDate()}</time>
+            `;
+            messageContainer.appendChild(headerDiv);
+            
+            // Add content bubble
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'chat-bubble chat-bubble-accent';
+            bubbleDiv.textContent = content || '';
+            messageContainer.appendChild(bubbleDiv);
+            
+            // Add file preview if available
+            if (selectedFile) {
+                const fileFooter = document.createElement('div');
+                fileFooter.className = 'chat-footer opacity-70 mt-1';
+                
+                // Create a more detailed file badge
+                fileFooter.innerHTML = `
+                    <div class="flex items-center gap-1 badge badge-outline p-2">
+                        <i class="fa-solid ${selectedFile.name.toLowerCase().endsWith('.pdf') ? 'fa-file-pdf' : 'fa-file-image'} text-accent"></i>
+                        <span class="truncate max-w-[150px]">${selectedFile.name}</span>
+                        <span class="text-xs opacity-70">(${(selectedFile.size / 1024).toFixed(1)} KB)</span>
+                    </div>
+                `;
+                messageContainer.appendChild(fileFooter);
+            }
+            
+            messageDiv.appendChild(messageContainer);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Add assistant message to chat
+        function addAssistantMessage(content, toolUsed = null, resultData = null) {
+            // First add typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat chat-start animate-fadeIn';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="chat-image avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                    </div>
+                </div>
+                <div class="chat-bubble">
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Remove typing indicator after a short delay and add the actual message
+            setTimeout(() => {
+                typingDiv.remove();
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat chat-start animate-fadeIn';
+                
+                // Create the message container
+                const messageContainer = document.createElement('div');
+                messageContainer.className = 'flex flex-col';
+                
+                // Add avatar and header
+                messageContainer.innerHTML = `
+                    <div class="chat-image avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4812/4812422.png" alt="MCP" />
+                        </div>
+                    </div>
+                    <div class="chat-header">
+                        Medical Assistant
+                        <time class="text-xs opacity-50">${formatDate()}</time>
+                    </div>
+                `;
+                
+                // Create the bubble
+                const bubbleDiv = document.createElement('div');
+                bubbleDiv.className = 'chat-bubble chat-bubble-primary';
+                
+                // Add content to bubble
+                try {
+                    bubbleDiv.innerHTML = marked.parse(content || '');
+                } catch (e) {
+                    console.error('Error parsing content:', e);
+                    bubbleDiv.textContent = content || '';
+                }
+                
+                messageContainer.appendChild(bubbleDiv);
+                
+                // Add footer with tool info if available
+                if (toolUsed) {
+                    const toolFooter = document.createElement('div');
+                    toolFooter.className = 'chat-footer opacity-70 mt-1';
+                    toolFooter.innerHTML = `
+                        <div class="badge badge-primary badge-outline gap-1">
+                            <i class="fa-solid fa-wrench"></i> ${toolUsed}
+                        </div>
+                    `;
+                    messageContainer.appendChild(toolFooter);
+                }
+                
+                // Add View Result button if a result file is available
+                if (resultData && resultData.view_url) {
+                    const resultFooter = document.createElement('div');
+                    resultFooter.className = 'chat-footer mt-2';
+                    resultFooter.innerHTML = `
+                        <a href="${resultData.view_url}" class="btn btn-sm btn-accent btn-outline gap-1">
+                            <i class="fa-solid fa-eye"></i> View Result
+                        </a>
+                    `;
+                    messageContainer.appendChild(resultFooter);
+                }
+                
+                messageDiv.appendChild(messageContainer);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1500);
+        }
+    });
+</script>
+{% endblock %}
